@@ -5,6 +5,9 @@
 # PYPDF2 documentation: https://pythonhosted.org/PyPDF2/PdfFileReader.html
 # os documentation: https://docs.python.org/3/library/os.html#module-os
 
+# This script utilizes algorithmic features of a solution posted by sylvain to a Stack Overflow question: 
+# https://stackoverflow.com/questions/2693820/extract-images-from-pdf-without-resampling-in-python
+
 import os
 import PyPDF2
 
