@@ -7,6 +7,7 @@
 # If running this sript as the main program, include path to top level of PDF directory system as a command line argument.
 
 import sys
+import json
 from pathlib import Path
 
 def collect_paths_in_directory(target_dir_path=".", file_type="pdf"):
@@ -21,12 +22,12 @@ def collect_paths_in_directory(target_dir_path=".", file_type="pdf"):
 	pdf_path_list.sort()
 
 	try:
-		f = open('pdf_path_cache.txt', 'r')
+		f = open('pdf_path_cache.json', 'r')
 		print("PDF list file already exists")
 
 	except:
 	## write list of path to a file for later use
-		with open('pdf_path_list.txt', 'a') as f:
+		with open('pdf_path_chache.json', 'a') as f:
 			for item in pdf_path_list:
 				f.write("{}\n".format(item.as_posix())) #write path as POSIX string
 
