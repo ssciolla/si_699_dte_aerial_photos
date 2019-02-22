@@ -1,4 +1,4 @@
-# Script extracting a JPG image from an Aerial Photo PDF
+# Functions for extracting JPGs from PDFs and creating metadata
 # Sam Sciolla, Garrett Morton
 # SI 699
 
@@ -31,7 +31,6 @@ def pull_links_from_index(image_pdf_file_name):
 		link_coords = []
 		for float_object in float_objects:
 			link_coord = float(float_object)
-			print(type(link_coord))
 			link_coords.append(link_coord)
 		if '/A' in annot_object.keys():
 			indirect_object = annot_object['/A'].getObject()
@@ -40,18 +39,19 @@ def pull_links_from_index(image_pdf_file_name):
 			print(annot_object['/AP']['/N'].getObject()['/Subtype'])
 		if '/F' in indirect_object.keys():
 			file_name = indirect_object['/F']['/F']
-			print(file_name)
-			link_dictionary = {'Image File Name': file_name,
+			link_dictionary = {'Photo File Name': file_name,
 							   'Link Coordinates': link_coords,
 							   'File or URI?': 'File'}
 		else:
 			print("** indirectObject does not have a '/F' key **")
 			print(indirect_object)
 			uri_name = indirect_object['/URI']
-			link_dictionary = {'Image File Name': uri_name,
+			link_dictionary = {'Photo File Name': uri_name,
 							   'Link Coordinates': link_coords,
 							   'File or URI': 'URI'}
 		links.append(link_dictionary)
+	links = sorted(links, key=lambda x: x['Photo File Name'])
+	print(len(links))
 	index_file_metadata = {'Index File Name': image_pdf_file_name, 'Links': links}
 	return index_file_metadata
 
