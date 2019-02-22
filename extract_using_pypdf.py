@@ -1,4 +1,5 @@
 # Functions for extracting JPGs from PDFs and creating metadata
+# PyPDF2 Solution
 # Sam Sciolla, Garrett Morton
 # SI 699
 
@@ -75,7 +76,7 @@ def extract_jpg_from_pdf(image_pdf_file_name, output_location=''):
 
 	image_object = image_objects[0]
 	image_metadata = {}
-	image_metadata['Photo File Name'] = image_pdf_file_name
+	image_metadata['Photo File Name'] = image_pdf_file_name.replace('input/', '')
 	image_metadata['Width'] = image_object['/Width']
 	image_metadata['Height']= image_object['/Height']
 	image_metadata['ColorSpace'] = image_object['/ColorSpace'].replace('/', '')
@@ -83,14 +84,14 @@ def extract_jpg_from_pdf(image_pdf_file_name, output_location=''):
 	image_metadata['Filter'] = image_object['/Filter'].replace('/', '')
 	# print(metadata)
 
-	new_jpg_file_name = image_pdf_file_name.replace(".pdf", '_image.jpg')
+	new_jpg_file_name = image_pdf_file_name.replace('input/', '').replace(".pdf", '_image.jpg')
 	jpg_file = open(output_location + new_jpg_file_name, 'wb')
 	jpg_file.write(image_object._data)
 	jpg_file.close()
 
 	return image_metadata
 
-def process_batch(pdf_file_names):
+def process_batch(pdf_file_names, output_location):
 	image_metadata_dicts = []
 	index_metadata_dicts = []
 	for pdf_file_name in pdf_file_names:
@@ -98,20 +99,23 @@ def process_batch(pdf_file_names):
 			new_index_metadata_dict = pull_links_from_index(pdf_file_name)
 			index_metadata_dicts.append(new_index_metadata_dict)
 		else:
-			image_metadata_dict = extract_jpg_from_pdf(pdf_file_name)
+			image_metadata_dict = extract_jpg_from_pdf(pdf_file_name, output_location)
 			image_metadata_dicts.append(image_metadata_dict)
 	return (index_metadata_dicts, image_metadata_dicts)
 
 if __name__=="__main__":
+	root_directory = os.getcwd()
+	os.chdir(root_directory + "/input")
 	dir_objects = os.scandir()
 	pdf_file_names = []
 	for dir_object in dir_objects:
 		if '.pdf' in dir_object.name:
-			pdf_file_names.append(dir_object.name)
-	results = process_batch(pdf_file_names)
+			pdf_file_names.append('input/' + dir_object.name)
+	os.chdir(root_directory)
+	results = process_batch(pdf_file_names, 'output/pypdf2/')
 	sample_batch_metadata = {}
 	sample_batch_metadata['Index Files'] = results[0]
 	sample_batch_metadata['Image Files'] = results[1]
-	metadata_file = open('sample_batch_metadata.json', 'w', encoding='utf-8')
+	metadata_file = open('output/pypdf2/sample_batch_metadata.json', 'w', encoding='utf-8')
 	metadata_file.write(json.dumps(sample_batch_metadata, indent=4))
 	metadata_file.close()

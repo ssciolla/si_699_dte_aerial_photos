@@ -1,2 +1,5 @@
 *.jpg
 venv/
+ubuntu_venv/
+output/pypdf2/
+output/poppler/
