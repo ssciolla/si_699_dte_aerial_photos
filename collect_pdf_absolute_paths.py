@@ -2,7 +2,7 @@
 # Sam Sciolla, Garrett Morton
 # SI 699
 
-# This script provides a function for collecting path of all PDF files in the target directory and all its descendants.
+# This script provides a function for collecting path of all PDF files in the target directory and all its descendants.  The script then writes this list to a json file, unless such a file already exists (to avoid overwriting or duplication).
 
 # If running this sript as the main program, include path to top level of PDF directory system as a command line argument.
 
@@ -38,8 +38,8 @@ def collect_paths_in_directory(target_dir_path=".", file_type="pdf"):
 		pdf_path_list.sort()
 		cache_dict["master_list"] = pdf_path_list
 
+	#if file already existed and "master_list" already cached
 	else:
-		#if file exists and "master_list" already key in cache dictionary
 		print("Path master list already cached")
 
 	## write cache dictionary to json cache file
