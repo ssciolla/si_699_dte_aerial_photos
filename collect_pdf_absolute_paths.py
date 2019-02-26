@@ -2,33 +2,49 @@
 # Sam Sciolla, Garrett Morton
 # SI 699
 
-# This script provides a function for collecting path of all PDF files in the target directory and all its descendants.
+# This script provides a function for collecting path of all PDF files in the target directory and all its descendants.  The script then writes this list to a json file, unless such a file already exists (to avoid overwriting or duplication).
 
 # If running this sript as the main program, include path to top level of PDF directory system as a command line argument.
 
 import sys
+import json
 from pathlib import Path
 
 def collect_paths_in_directory(target_dir_path=".", file_type="pdf"):
-	abs_target = Path(target_dir_path).resolve() #get absolute path of target directory
-	result = abs_target.glob('**/*.pdf') #search for all pdf filenames recursively
-	
-	## move pdf paths from a generator to a list
-	pdf_path_list = []
-	for item in result:
-		pdf_path_list.append(item)
-
-	pdf_path_list.sort()
-
+	## attempt to open json cache file if it already exists
 	try:
-		f = open('pdf_path_cache.txt', 'r')
-		print("PDF list file already exists")
+		f = open('pdf_path_cache.json', 'r')
+		cache_dict = json.loads(f.read())
+		print("Path cache file already exists")
 
+	## if cache file does not exist, create it.
 	except:
 	## write list of path to a file for later use
-		with open('pdf_path_list.txt', 'a') as f:
-			for item in pdf_path_list:
-				f.write("{}\n".format(item.as_posix())) #write path as POSIX string
+		cache_dict = {}
+		with open('pdf_path_cache.json', 'w') as f:
+			pass
+
+	## if cache file is new or did not contain master list of PDF paths, create master list and store in cache dictionary
+	if "master_list" not in cache_dict.keys():
+		absolute_target = Path(target_dir_path).resolve() #get absolute path of target directory
+		path_search_result = absolute_target.glob('**/*.pdf') #search for all pdf filenames recursively
+	
+		## move pdf paths from a generator to a list
+		pdf_path_list = []
+		for item in path_search_result:
+			pdf_path_list.append(item.as_posix())
+			#print(item) #for debugging
+
+		pdf_path_list.sort()
+		cache_dict["master_list"] = pdf_path_list
+
+	#if file already existed and "master_list" already cached
+	else:
+		print("Path master list already cached")
+
+	## write cache dictionary to json cache file
+	with open('pdf_path_cache.json', 'w') as f:
+		f.write(json.dumps(cache_dict))
 
 if __name__=="__main__":
 	# if running this file 
