@@ -1,5 +1,4 @@
-**/*.jpg
-**/*.json
-**/__pycache__
+__pycache__
 venv/
 ubuntu_venv/
+*.pyc

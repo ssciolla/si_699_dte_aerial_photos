@@ -1,6 +1,0 @@
-Package    Version
----------- -------
-pip        19.0.2 
-PyPDF2     1.26.0 
-setuptools 40.8.0 
-wheel      0.32.3 

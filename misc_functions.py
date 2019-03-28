@@ -1,0 +1,24 @@
+# Miscellaneous functions for DTE Aerial Photo Collection project
+# Garrett Morton, Sam Sciolla
+# SI 699
+
+# os documentation: https://docs.python.org/3/library/os.html#module-os
+
+import os
+import sys
+
+# Collect all relative paths from root directory to files
+def collect_relative_paths_for_files(target_directory_path):
+	root_directory = os.getcwd()
+	os.chdir(target_directory_path)
+	dir_objects = os.scandir()
+	pdf_file_paths = []
+	for dir_object in dir_objects:
+		if '.pdf' in dir_object.name:
+			absolute_path = os.path.abspath(dir_object.name)
+			relative_path = absolute_path.replace(root_directory + '\\', '').replace(root_directory + '/', '')
+			pdf_file_paths.append(relative_path)
+		else:
+			("** Non-PDF file present! **")
+	os.chdir(root_directory)
+	return pdf_file_paths
