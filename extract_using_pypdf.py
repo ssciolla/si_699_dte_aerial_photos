@@ -4,7 +4,9 @@
 # Garrett Morton, Sam Sciolla
 # SI 699
 
-# PYPDF2 documentation: https://pythonhosted.org/PyPDF2/PdfFileReader.html
+# Written and tested using Python 3.7.0
+
+# PyPDF2 documentation: https://pythonhosted.org/PyPDF2/index.html
 # os documentation: https://docs.python.org/3/library/os.html#module-os
 
 # This script uses algorithmic features of a solution posted by sylvain to a Stack Overflow question:
@@ -46,7 +48,7 @@ def pull_links_from_index(relative_path):
 		if '/A' in annot_object.keys():
 			indirect_object = annot_object['/A'].getObject()
 		else:
-			print("** Annotation does not have a '/A' key ** ")
+			print("?? Annotation does not have a '/A' key ??")
 			print(annot_object['/AP']['/N'].getObject()['/Subtype'])
 		if '/F' in indirect_object.keys():
 			file_name = indirect_object['/F']['/F']
@@ -56,7 +58,7 @@ def pull_links_from_index(relative_path):
 				'File or URI?': 'File'}
 		else:
 			# Link objects without an '/F' key may signal broken links.
-			print("** indirectObject does not have a '/F' key **")
+			print("?? indirectObject does not have a '/F' key ??")
 			print(indirect_object)
 			uri_name = indirect_object['/URI']
 			link_dictionary = {

@@ -4,6 +4,8 @@
 # Garrett Morton, Sam Sciolla
 # SI 699
 
+# Written and tested using Python 3.7.0
+
 # os documentation: https://docs.python.org/3/library/os.html#module-os
 # subprocess documentation: https://docs.python.org/3/library/subprocess.html
 
@@ -26,7 +28,7 @@ from gi.repository import Gio, Poppler, cairo
 # local modules
 import misc_functions
 
-# Functions
+## Functions
 
 # Identify embedded links in Index PDF and collect metadata
 def pull_links_from_index(relative_path):

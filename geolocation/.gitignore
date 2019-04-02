@@ -1,0 +1,5 @@
+__pycache__
+arcgis_geocoding_cache.json
+geolocated_links.json
+link_coordinates.csv
+macomb_1961_index.geojson
