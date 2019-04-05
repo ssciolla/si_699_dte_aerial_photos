@@ -1,8 +1,8 @@
 {
     "Index Records": [
         {
-            "Index File Name": "C:\\Users\\Sam_Sciolla\\Documents\\University_of_Michigan\\S4_19_Winter\\SI_699\\extraction_work\\extraction_repo\\input\\part1\\macomb\\1961\\macomb61Index.pdf",
-            "Source Absolute Path": "C:\\Users\\Sam_Sciolla\\Documents\\University_of_Michigan\\S4_19_Winter\\SI_699\\extraction_work\\extraction_repo\\input\\part1\\macomb\\1961\\macomb61Index.pdf",
+            "Index File Name": "macomb61Index.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\macomb61Index.pdf",
             "Links": [
                 {
                     "Linked Image File Name": "fm-11-100.pdf",
@@ -4455,8 +4455,8 @@
     ],
     "Image Records": [
         {
-            "File Identifier": "fm-11-100",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-11-100.pdf",
+            "Image File Name": "fm-11-100.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-11-100.pdf",
             "Width": 5354,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -4465,8 +4465,8 @@
             "Created Image File Name": "dte_aerial_fm-11-100.jpg"
         },
         {
-            "File Identifier": "fm-11-101",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-11-101.pdf",
+            "Image File Name": "fm-11-101.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-11-101.pdf",
             "Width": 5354,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -4475,8 +4475,8 @@
             "Created Image File Name": "dte_aerial_fm-11-101.jpg"
         },
         {
-            "File Identifier": "fm-11-102",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-11-102.pdf",
+            "Image File Name": "fm-11-102.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-11-102.pdf",
             "Width": 5354,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -4485,8 +4485,8 @@
             "Created Image File Name": "dte_aerial_fm-11-102.jpg"
         },
         {
-            "File Identifier": "fm-11-103",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-11-103.pdf",
+            "Image File Name": "fm-11-103.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-11-103.pdf",
             "Width": 5354,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -4495,8 +4495,8 @@
             "Created Image File Name": "dte_aerial_fm-11-103.jpg"
         },
         {
-            "File Identifier": "fm-11-104",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-11-104.pdf",
+            "Image File Name": "fm-11-104.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-11-104.pdf",
             "Width": 5354,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -4505,8 +4505,8 @@
             "Created Image File Name": "dte_aerial_fm-11-104.jpg"
         },
         {
-            "File Identifier": "fm-11-105",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-11-105.pdf",
+            "Image File Name": "fm-11-105.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-11-105.pdf",
             "Width": 5354,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -4515,8 +4515,8 @@
             "Created Image File Name": "dte_aerial_fm-11-105.jpg"
         },
         {
-            "File Identifier": "fm-11-106",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-11-106.pdf",
+            "Image File Name": "fm-11-106.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-11-106.pdf",
             "Width": 5354,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -4525,8 +4525,8 @@
             "Created Image File Name": "dte_aerial_fm-11-106.jpg"
         },
         {
-            "File Identifier": "fm-11-107",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-11-107.pdf",
+            "Image File Name": "fm-11-107.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-11-107.pdf",
             "Width": 5354,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -4535,8 +4535,8 @@
             "Created Image File Name": "dte_aerial_fm-11-107.jpg"
         },
         {
-            "File Identifier": "fm-11-108",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-11-108.pdf",
+            "Image File Name": "fm-11-108.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-11-108.pdf",
             "Width": 5354,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -4545,8 +4545,8 @@
             "Created Image File Name": "dte_aerial_fm-11-108.jpg"
         },
         {
-            "File Identifier": "fm-11-109",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-11-109.pdf",
+            "Image File Name": "fm-11-109.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-11-109.pdf",
             "Width": 5354,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -4555,8 +4555,8 @@
             "Created Image File Name": "dte_aerial_fm-11-109.jpg"
         },
         {
-            "File Identifier": "fm-11-110",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-11-110.pdf",
+            "Image File Name": "fm-11-110.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-11-110.pdf",
             "Width": 5366,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -4565,8 +4565,8 @@
             "Created Image File Name": "dte_aerial_fm-11-110.jpg"
         },
         {
-            "File Identifier": "fm-11-91",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-11-91.pdf",
+            "Image File Name": "fm-11-91.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-11-91.pdf",
             "Width": 5378,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -4575,8 +4575,8 @@
             "Created Image File Name": "dte_aerial_fm-11-91.jpg"
         },
         {
-            "File Identifier": "fm-11-92",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-11-92.pdf",
+            "Image File Name": "fm-11-92.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-11-92.pdf",
             "Width": 5378,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -4585,8 +4585,8 @@
             "Created Image File Name": "dte_aerial_fm-11-92.jpg"
         },
         {
-            "File Identifier": "fm-11-93",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-11-93.pdf",
+            "Image File Name": "fm-11-93.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-11-93.pdf",
             "Width": 5364,
             "Height": 5346,
             "ColorSpace": "DeviceGray",
@@ -4595,8 +4595,8 @@
             "Created Image File Name": "dte_aerial_fm-11-93.jpg"
         },
         {
-            "File Identifier": "fm-11-94",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-11-94.pdf",
+            "Image File Name": "fm-11-94.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-11-94.pdf",
             "Width": 5354,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -4605,8 +4605,8 @@
             "Created Image File Name": "dte_aerial_fm-11-94.jpg"
         },
         {
-            "File Identifier": "fm-11-95",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-11-95.pdf",
+            "Image File Name": "fm-11-95.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-11-95.pdf",
             "Width": 5354,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -4615,8 +4615,8 @@
             "Created Image File Name": "dte_aerial_fm-11-95.jpg"
         },
         {
-            "File Identifier": "fm-11-96",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-11-96.pdf",
+            "Image File Name": "fm-11-96.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-11-96.pdf",
             "Width": 5354,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -4625,8 +4625,8 @@
             "Created Image File Name": "dte_aerial_fm-11-96.jpg"
         },
         {
-            "File Identifier": "fm-11-97",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-11-97.pdf",
+            "Image File Name": "fm-11-97.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-11-97.pdf",
             "Width": 5354,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -4635,8 +4635,8 @@
             "Created Image File Name": "dte_aerial_fm-11-97.jpg"
         },
         {
-            "File Identifier": "fm-11-98",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-11-98.pdf",
+            "Image File Name": "fm-11-98.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-11-98.pdf",
             "Width": 5354,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -4645,8 +4645,8 @@
             "Created Image File Name": "dte_aerial_fm-11-98.jpg"
         },
         {
-            "File Identifier": "fm-11-99",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-11-99.pdf",
+            "Image File Name": "fm-11-99.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-11-99.pdf",
             "Width": 5354,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -4655,8 +4655,8 @@
             "Created Image File Name": "dte_aerial_fm-11-99.jpg"
         },
         {
-            "File Identifier": "fm-24-28",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-24-28.pdf",
+            "Image File Name": "fm-24-28.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-24-28.pdf",
             "Width": 5344,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -4665,8 +4665,8 @@
             "Created Image File Name": "dte_aerial_fm-24-28.jpg"
         },
         {
-            "File Identifier": "fm-24-29",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-24-29.pdf",
+            "Image File Name": "fm-24-29.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-24-29.pdf",
             "Width": 5344,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -4675,8 +4675,8 @@
             "Created Image File Name": "dte_aerial_fm-24-29.jpg"
         },
         {
-            "File Identifier": "fm-24-30",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-24-30.pdf",
+            "Image File Name": "fm-24-30.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-24-30.pdf",
             "Width": 5344,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -4685,8 +4685,8 @@
             "Created Image File Name": "dte_aerial_fm-24-30.jpg"
         },
         {
-            "File Identifier": "fm-24-31",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-24-31.pdf",
+            "Image File Name": "fm-24-31.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-24-31.pdf",
             "Width": 5344,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -4695,8 +4695,8 @@
             "Created Image File Name": "dte_aerial_fm-24-31.jpg"
         },
         {
-            "File Identifier": "fm-24-32",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-24-32.pdf",
+            "Image File Name": "fm-24-32.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-24-32.pdf",
             "Width": 5344,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -4705,8 +4705,8 @@
             "Created Image File Name": "dte_aerial_fm-24-32.jpg"
         },
         {
-            "File Identifier": "fm-24-33",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-24-33.pdf",
+            "Image File Name": "fm-24-33.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-24-33.pdf",
             "Width": 5344,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -4715,8 +4715,8 @@
             "Created Image File Name": "dte_aerial_fm-24-33.jpg"
         },
         {
-            "File Identifier": "fm-24-34",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-24-34.pdf",
+            "Image File Name": "fm-24-34.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-24-34.pdf",
             "Width": 5354,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -4725,8 +4725,8 @@
             "Created Image File Name": "dte_aerial_fm-24-34.jpg"
         },
         {
-            "File Identifier": "fm-24-35",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-24-35.pdf",
+            "Image File Name": "fm-24-35.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-24-35.pdf",
             "Width": 5354,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -4735,8 +4735,8 @@
             "Created Image File Name": "dte_aerial_fm-24-35.jpg"
         },
         {
-            "File Identifier": "fm-24-36",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-24-36.pdf",
+            "Image File Name": "fm-24-36.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-24-36.pdf",
             "Width": 5354,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -4745,8 +4745,8 @@
             "Created Image File Name": "dte_aerial_fm-24-36.jpg"
         },
         {
-            "File Identifier": "fm-24-37",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-24-37.pdf",
+            "Image File Name": "fm-24-37.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-24-37.pdf",
             "Width": 5354,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -4755,8 +4755,8 @@
             "Created Image File Name": "dte_aerial_fm-24-37.jpg"
         },
         {
-            "File Identifier": "fm-24-38",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-24-38.pdf",
+            "Image File Name": "fm-24-38.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-24-38.pdf",
             "Width": 5354,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -4765,8 +4765,8 @@
             "Created Image File Name": "dte_aerial_fm-24-38.jpg"
         },
         {
-            "File Identifier": "fm-24-39",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-24-39.pdf",
+            "Image File Name": "fm-24-39.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-24-39.pdf",
             "Width": 5354,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -4775,8 +4775,8 @@
             "Created Image File Name": "dte_aerial_fm-24-39.jpg"
         },
         {
-            "File Identifier": "fm-24-40",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-24-40.pdf",
+            "Image File Name": "fm-24-40.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-24-40.pdf",
             "Width": 5354,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -4785,8 +4785,8 @@
             "Created Image File Name": "dte_aerial_fm-24-40.jpg"
         },
         {
-            "File Identifier": "fm-24-41",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-24-41.pdf",
+            "Image File Name": "fm-24-41.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-24-41.pdf",
             "Width": 5354,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -4795,8 +4795,8 @@
             "Created Image File Name": "dte_aerial_fm-24-41.jpg"
         },
         {
-            "File Identifier": "fm-24-42",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-24-42.pdf",
+            "Image File Name": "fm-24-42.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-24-42.pdf",
             "Width": 5354,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -4805,8 +4805,8 @@
             "Created Image File Name": "dte_aerial_fm-24-42.jpg"
         },
         {
-            "File Identifier": "fm-24-43",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-24-43.pdf",
+            "Image File Name": "fm-24-43.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-24-43.pdf",
             "Width": 5354,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -4815,8 +4815,8 @@
             "Created Image File Name": "dte_aerial_fm-24-43.jpg"
         },
         {
-            "File Identifier": "fm-24-44",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-24-44.pdf",
+            "Image File Name": "fm-24-44.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-24-44.pdf",
             "Width": 5354,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -4825,8 +4825,8 @@
             "Created Image File Name": "dte_aerial_fm-24-44.jpg"
         },
         {
-            "File Identifier": "fm-24-45",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-24-45.pdf",
+            "Image File Name": "fm-24-45.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-24-45.pdf",
             "Width": 5354,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -4835,8 +4835,8 @@
             "Created Image File Name": "dte_aerial_fm-24-45.jpg"
         },
         {
-            "File Identifier": "fm-24-46",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-24-46.pdf",
+            "Image File Name": "fm-24-46.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-24-46.pdf",
             "Width": 5354,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -4845,8 +4845,8 @@
             "Created Image File Name": "dte_aerial_fm-24-46.jpg"
         },
         {
-            "File Identifier": "fm-24-47",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-24-47.pdf",
+            "Image File Name": "fm-24-47.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-24-47.pdf",
             "Width": 5354,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -4855,8 +4855,8 @@
             "Created Image File Name": "dte_aerial_fm-24-47.jpg"
         },
         {
-            "File Identifier": "fm-24-48",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-24-48.pdf",
+            "Image File Name": "fm-24-48.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-24-48.pdf",
             "Width": 5354,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -4865,8 +4865,8 @@
             "Created Image File Name": "dte_aerial_fm-24-48.jpg"
         },
         {
-            "File Identifier": "fm-24-49",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-24-49.pdf",
+            "Image File Name": "fm-24-49.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-24-49.pdf",
             "Width": 5354,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -4875,8 +4875,8 @@
             "Created Image File Name": "dte_aerial_fm-24-49.jpg"
         },
         {
-            "File Identifier": "fm-24-50",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-24-50.pdf",
+            "Image File Name": "fm-24-50.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-24-50.pdf",
             "Width": 5354,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -4885,8 +4885,8 @@
             "Created Image File Name": "dte_aerial_fm-24-50.jpg"
         },
         {
-            "File Identifier": "fm-24-51",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-24-51.pdf",
+            "Image File Name": "fm-24-51.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-24-51.pdf",
             "Width": 5354,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -4895,8 +4895,8 @@
             "Created Image File Name": "dte_aerial_fm-24-51.jpg"
         },
         {
-            "File Identifier": "fm-24-52",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-24-52.pdf",
+            "Image File Name": "fm-24-52.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-24-52.pdf",
             "Width": 5354,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -4905,8 +4905,8 @@
             "Created Image File Name": "dte_aerial_fm-24-52.jpg"
         },
         {
-            "File Identifier": "fm-24-53",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-24-53.pdf",
+            "Image File Name": "fm-24-53.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-24-53.pdf",
             "Width": 5388,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -4915,8 +4915,8 @@
             "Created Image File Name": "dte_aerial_fm-24-53.jpg"
         },
         {
-            "File Identifier": "fm-24-54",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-24-54.pdf",
+            "Image File Name": "fm-24-54.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-24-54.pdf",
             "Width": 5388,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -4925,8 +4925,8 @@
             "Created Image File Name": "dte_aerial_fm-24-54.jpg"
         },
         {
-            "File Identifier": "fm-24-55",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-24-55.pdf",
+            "Image File Name": "fm-24-55.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-24-55.pdf",
             "Width": 5388,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -4935,8 +4935,8 @@
             "Created Image File Name": "dte_aerial_fm-24-55.jpg"
         },
         {
-            "File Identifier": "fm-25-1",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-25-1.pdf",
+            "Image File Name": "fm-25-1.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-25-1.pdf",
             "Width": 5316,
             "Height": 5316,
             "ColorSpace": "DeviceGray",
@@ -4945,8 +4945,8 @@
             "Created Image File Name": "dte_aerial_fm-25-1.jpg"
         },
         {
-            "File Identifier": "fm-25-10",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-25-10.pdf",
+            "Image File Name": "fm-25-10.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-25-10.pdf",
             "Width": 5344,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -4955,8 +4955,8 @@
             "Created Image File Name": "dte_aerial_fm-25-10.jpg"
         },
         {
-            "File Identifier": "fm-25-11",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-25-11.pdf",
+            "Image File Name": "fm-25-11.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-25-11.pdf",
             "Width": 5344,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -4965,8 +4965,8 @@
             "Created Image File Name": "dte_aerial_fm-25-11.jpg"
         },
         {
-            "File Identifier": "fm-25-12",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-25-12.pdf",
+            "Image File Name": "fm-25-12.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-25-12.pdf",
             "Width": 5344,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -4975,8 +4975,8 @@
             "Created Image File Name": "dte_aerial_fm-25-12.jpg"
         },
         {
-            "File Identifier": "fm-25-13",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-25-13.pdf",
+            "Image File Name": "fm-25-13.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-25-13.pdf",
             "Width": 5344,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -4985,8 +4985,8 @@
             "Created Image File Name": "dte_aerial_fm-25-13.jpg"
         },
         {
-            "File Identifier": "fm-25-2",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-25-2.pdf",
+            "Image File Name": "fm-25-2.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-25-2.pdf",
             "Width": 5364,
             "Height": 5316,
             "ColorSpace": "DeviceGray",
@@ -4995,8 +4995,8 @@
             "Created Image File Name": "dte_aerial_fm-25-2.jpg"
         },
         {
-            "File Identifier": "fm-25-3",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-25-3.pdf",
+            "Image File Name": "fm-25-3.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-25-3.pdf",
             "Width": 5316,
             "Height": 5316,
             "ColorSpace": "DeviceGray",
@@ -5005,8 +5005,8 @@
             "Created Image File Name": "dte_aerial_fm-25-3.jpg"
         },
         {
-            "File Identifier": "fm-25-4",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-25-4.pdf",
+            "Image File Name": "fm-25-4.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-25-4.pdf",
             "Width": 5320,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5015,8 +5015,8 @@
             "Created Image File Name": "dte_aerial_fm-25-4.jpg"
         },
         {
-            "File Identifier": "fm-25-5",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-25-5.pdf",
+            "Image File Name": "fm-25-5.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-25-5.pdf",
             "Width": 5320,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5025,8 +5025,8 @@
             "Created Image File Name": "dte_aerial_fm-25-5.jpg"
         },
         {
-            "File Identifier": "fm-25-6",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-25-6.pdf",
+            "Image File Name": "fm-25-6.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-25-6.pdf",
             "Width": 5320,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5035,8 +5035,8 @@
             "Created Image File Name": "dte_aerial_fm-25-6.jpg"
         },
         {
-            "File Identifier": "fm-25-7",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-25-7.pdf",
+            "Image File Name": "fm-25-7.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-25-7.pdf",
             "Width": 5320,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5045,8 +5045,8 @@
             "Created Image File Name": "dte_aerial_fm-25-7.jpg"
         },
         {
-            "File Identifier": "fm-25-8",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-25-8.pdf",
+            "Image File Name": "fm-25-8.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-25-8.pdf",
             "Width": 5320,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5055,8 +5055,8 @@
             "Created Image File Name": "dte_aerial_fm-25-8.jpg"
         },
         {
-            "File Identifier": "fm-25-9",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-25-9.pdf",
+            "Image File Name": "fm-25-9.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-25-9.pdf",
             "Width": 5344,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5065,8 +5065,8 @@
             "Created Image File Name": "dte_aerial_fm-25-9.jpg"
         },
         {
-            "File Identifier": "fm-28-1",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-28-1.pdf",
+            "Image File Name": "fm-28-1.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-28-1.pdf",
             "Width": 5366,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5075,8 +5075,8 @@
             "Created Image File Name": "dte_aerial_fm-28-1.jpg"
         },
         {
-            "File Identifier": "fm-28-10",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-28-10.pdf",
+            "Image File Name": "fm-28-10.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-28-10.pdf",
             "Width": 5344,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5085,8 +5085,8 @@
             "Created Image File Name": "dte_aerial_fm-28-10.jpg"
         },
         {
-            "File Identifier": "fm-28-100",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-28-100.pdf",
+            "Image File Name": "fm-28-100.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-28-100.pdf",
             "Width": 5320,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5095,8 +5095,8 @@
             "Created Image File Name": "dte_aerial_fm-28-100.jpg"
         },
         {
-            "File Identifier": "fm-28-101",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-28-101.pdf",
+            "Image File Name": "fm-28-101.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-28-101.pdf",
             "Width": 5320,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5105,8 +5105,8 @@
             "Created Image File Name": "dte_aerial_fm-28-101.jpg"
         },
         {
-            "File Identifier": "fm-28-11",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-28-11.pdf",
+            "Image File Name": "fm-28-11.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-28-11.pdf",
             "Width": 5344,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5115,8 +5115,8 @@
             "Created Image File Name": "dte_aerial_fm-28-11.jpg"
         },
         {
-            "File Identifier": "fm-28-12",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-28-12.pdf",
+            "Image File Name": "fm-28-12.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-28-12.pdf",
             "Width": 5344,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5125,8 +5125,8 @@
             "Created Image File Name": "dte_aerial_fm-28-12.jpg"
         },
         {
-            "File Identifier": "fm-28-13",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-28-13.pdf",
+            "Image File Name": "fm-28-13.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-28-13.pdf",
             "Width": 5344,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5135,8 +5135,8 @@
             "Created Image File Name": "dte_aerial_fm-28-13.jpg"
         },
         {
-            "File Identifier": "fm-28-14",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-28-14.pdf",
+            "Image File Name": "fm-28-14.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-28-14.pdf",
             "Width": 5332,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5145,8 +5145,8 @@
             "Created Image File Name": "dte_aerial_fm-28-14.jpg"
         },
         {
-            "File Identifier": "fm-28-15",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-28-15.pdf",
+            "Image File Name": "fm-28-15.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-28-15.pdf",
             "Width": 5332,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5155,8 +5155,8 @@
             "Created Image File Name": "dte_aerial_fm-28-15.jpg"
         },
         {
-            "File Identifier": "fm-28-16",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-28-16.pdf",
+            "Image File Name": "fm-28-16.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-28-16.pdf",
             "Width": 5332,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5165,8 +5165,8 @@
             "Created Image File Name": "dte_aerial_fm-28-16.jpg"
         },
         {
-            "File Identifier": "fm-28-17",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-28-17.pdf",
+            "Image File Name": "fm-28-17.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-28-17.pdf",
             "Width": 5332,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5175,8 +5175,8 @@
             "Created Image File Name": "dte_aerial_fm-28-17.jpg"
         },
         {
-            "File Identifier": "fm-28-18",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-28-18.pdf",
+            "Image File Name": "fm-28-18.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-28-18.pdf",
             "Width": 5332,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5185,8 +5185,8 @@
             "Created Image File Name": "dte_aerial_fm-28-18.jpg"
         },
         {
-            "File Identifier": "fm-28-19",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-28-19.pdf",
+            "Image File Name": "fm-28-19.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-28-19.pdf",
             "Width": 5332,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5195,8 +5195,8 @@
             "Created Image File Name": "dte_aerial_fm-28-19.jpg"
         },
         {
-            "File Identifier": "fm-28-2",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-28-2.pdf",
+            "Image File Name": "fm-28-2.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-28-2.pdf",
             "Width": 5366,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5205,8 +5205,8 @@
             "Created Image File Name": "dte_aerial_fm-28-2.jpg"
         },
         {
-            "File Identifier": "fm-28-20",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-28-20.pdf",
+            "Image File Name": "fm-28-20.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-28-20.pdf",
             "Width": 5332,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5215,8 +5215,8 @@
             "Created Image File Name": "dte_aerial_fm-28-20.jpg"
         },
         {
-            "File Identifier": "fm-28-21",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-28-21.pdf",
+            "Image File Name": "fm-28-21.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-28-21.pdf",
             "Width": 5354,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5225,8 +5225,8 @@
             "Created Image File Name": "dte_aerial_fm-28-21.jpg"
         },
         {
-            "File Identifier": "fm-28-22",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-28-22.pdf",
+            "Image File Name": "fm-28-22.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-28-22.pdf",
             "Width": 5354,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5235,8 +5235,8 @@
             "Created Image File Name": "dte_aerial_fm-28-22.jpg"
         },
         {
-            "File Identifier": "fm-28-23",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-28-23.pdf",
+            "Image File Name": "fm-28-23.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-28-23.pdf",
             "Width": 5354,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5245,8 +5245,8 @@
             "Created Image File Name": "dte_aerial_fm-28-23.jpg"
         },
         {
-            "File Identifier": "fm-28-24",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-28-24.pdf",
+            "Image File Name": "fm-28-24.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-28-24.pdf",
             "Width": 5354,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5255,8 +5255,8 @@
             "Created Image File Name": "dte_aerial_fm-28-24.jpg"
         },
         {
-            "File Identifier": "fm-28-25",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-28-25.pdf",
+            "Image File Name": "fm-28-25.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-28-25.pdf",
             "Width": 5354,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5265,8 +5265,8 @@
             "Created Image File Name": "dte_aerial_fm-28-25.jpg"
         },
         {
-            "File Identifier": "fm-28-26",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-28-26.pdf",
+            "Image File Name": "fm-28-26.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-28-26.pdf",
             "Width": 5354,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5275,8 +5275,8 @@
             "Created Image File Name": "dte_aerial_fm-28-26.jpg"
         },
         {
-            "File Identifier": "fm-28-27",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-28-27.pdf",
+            "Image File Name": "fm-28-27.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-28-27.pdf",
             "Width": 5354,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5285,8 +5285,8 @@
             "Created Image File Name": "dte_aerial_fm-28-27.jpg"
         },
         {
-            "File Identifier": "fm-28-28",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-28-28.pdf",
+            "Image File Name": "fm-28-28.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-28-28.pdf",
             "Width": 5354,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5295,8 +5295,8 @@
             "Created Image File Name": "dte_aerial_fm-28-28.jpg"
         },
         {
-            "File Identifier": "fm-28-29",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-28-29.pdf",
+            "Image File Name": "fm-28-29.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-28-29.pdf",
             "Width": 5332,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5305,8 +5305,8 @@
             "Created Image File Name": "dte_aerial_fm-28-29.jpg"
         },
         {
-            "File Identifier": "fm-28-3",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-28-3.pdf",
+            "Image File Name": "fm-28-3.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-28-3.pdf",
             "Width": 5366,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5315,8 +5315,8 @@
             "Created Image File Name": "dte_aerial_fm-28-3.jpg"
         },
         {
-            "File Identifier": "fm-28-30",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-28-30.pdf",
+            "Image File Name": "fm-28-30.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-28-30.pdf",
             "Width": 5354,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5325,8 +5325,8 @@
             "Created Image File Name": "dte_aerial_fm-28-30.jpg"
         },
         {
-            "File Identifier": "fm-28-31",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-28-31.pdf",
+            "Image File Name": "fm-28-31.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-28-31.pdf",
             "Width": 5354,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5335,8 +5335,8 @@
             "Created Image File Name": "dte_aerial_fm-28-31.jpg"
         },
         {
-            "File Identifier": "fm-28-32",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-28-32.pdf",
+            "Image File Name": "fm-28-32.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-28-32.pdf",
             "Width": 5354,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5345,8 +5345,8 @@
             "Created Image File Name": "dte_aerial_fm-28-32.jpg"
         },
         {
-            "File Identifier": "fm-28-33",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-28-33.pdf",
+            "Image File Name": "fm-28-33.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-28-33.pdf",
             "Width": 5354,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5355,8 +5355,8 @@
             "Created Image File Name": "dte_aerial_fm-28-33.jpg"
         },
         {
-            "File Identifier": "fm-28-34",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-28-34.pdf",
+            "Image File Name": "fm-28-34.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-28-34.pdf",
             "Width": 5354,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5365,8 +5365,8 @@
             "Created Image File Name": "dte_aerial_fm-28-34.jpg"
         },
         {
-            "File Identifier": "fm-28-35",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-28-35.pdf",
+            "Image File Name": "fm-28-35.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-28-35.pdf",
             "Width": 5332,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5375,8 +5375,8 @@
             "Created Image File Name": "dte_aerial_fm-28-35.jpg"
         },
         {
-            "File Identifier": "fm-28-36",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-28-36.pdf",
+            "Image File Name": "fm-28-36.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-28-36.pdf",
             "Width": 5332,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5385,8 +5385,8 @@
             "Created Image File Name": "dte_aerial_fm-28-36.jpg"
         },
         {
-            "File Identifier": "fm-28-37",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-28-37.pdf",
+            "Image File Name": "fm-28-37.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-28-37.pdf",
             "Width": 5332,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5395,8 +5395,8 @@
             "Created Image File Name": "dte_aerial_fm-28-37.jpg"
         },
         {
-            "File Identifier": "fm-28-38",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-28-38.pdf",
+            "Image File Name": "fm-28-38.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-28-38.pdf",
             "Width": 5332,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5405,8 +5405,8 @@
             "Created Image File Name": "dte_aerial_fm-28-38.jpg"
         },
         {
-            "File Identifier": "fm-28-39",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-28-39.pdf",
+            "Image File Name": "fm-28-39.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-28-39.pdf",
             "Width": 5332,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5415,8 +5415,8 @@
             "Created Image File Name": "dte_aerial_fm-28-39.jpg"
         },
         {
-            "File Identifier": "fm-28-4",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-28-4.pdf",
+            "Image File Name": "fm-28-4.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-28-4.pdf",
             "Width": 5366,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5425,8 +5425,8 @@
             "Created Image File Name": "dte_aerial_fm-28-4.jpg"
         },
         {
-            "File Identifier": "fm-28-5",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-28-5.pdf",
+            "Image File Name": "fm-28-5.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-28-5.pdf",
             "Width": 5366,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5435,8 +5435,8 @@
             "Created Image File Name": "dte_aerial_fm-28-5.jpg"
         },
         {
-            "File Identifier": "fm-28-6",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-28-6.pdf",
+            "Image File Name": "fm-28-6.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-28-6.pdf",
             "Width": 5366,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5445,8 +5445,8 @@
             "Created Image File Name": "dte_aerial_fm-28-6.jpg"
         },
         {
-            "File Identifier": "fm-28-63",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-28-63.pdf",
+            "Image File Name": "fm-28-63.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-28-63.pdf",
             "Width": 5354,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5455,8 +5455,8 @@
             "Created Image File Name": "dte_aerial_fm-28-63.jpg"
         },
         {
-            "File Identifier": "fm-28-64",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-28-64.pdf",
+            "Image File Name": "fm-28-64.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-28-64.pdf",
             "Width": 5354,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5465,8 +5465,8 @@
             "Created Image File Name": "dte_aerial_fm-28-64.jpg"
         },
         {
-            "File Identifier": "fm-28-65",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-28-65.pdf",
+            "Image File Name": "fm-28-65.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-28-65.pdf",
             "Width": 5354,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5475,8 +5475,8 @@
             "Created Image File Name": "dte_aerial_fm-28-65.jpg"
         },
         {
-            "File Identifier": "fm-28-66",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-28-66.pdf",
+            "Image File Name": "fm-28-66.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-28-66.pdf",
             "Width": 5354,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5485,8 +5485,8 @@
             "Created Image File Name": "dte_aerial_fm-28-66.jpg"
         },
         {
-            "File Identifier": "fm-28-67",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-28-67.pdf",
+            "Image File Name": "fm-28-67.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-28-67.pdf",
             "Width": 5354,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5495,8 +5495,8 @@
             "Created Image File Name": "dte_aerial_fm-28-67.jpg"
         },
         {
-            "File Identifier": "fm-28-68",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-28-68.pdf",
+            "Image File Name": "fm-28-68.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-28-68.pdf",
             "Width": 5354,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5505,8 +5505,8 @@
             "Created Image File Name": "dte_aerial_fm-28-68.jpg"
         },
         {
-            "File Identifier": "fm-28-69",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-28-69.pdf",
+            "Image File Name": "fm-28-69.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-28-69.pdf",
             "Width": 5354,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5515,8 +5515,8 @@
             "Created Image File Name": "dte_aerial_fm-28-69.jpg"
         },
         {
-            "File Identifier": "fm-28-7",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-28-7.pdf",
+            "Image File Name": "fm-28-7.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-28-7.pdf",
             "Width": 5344,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5525,8 +5525,8 @@
             "Created Image File Name": "dte_aerial_fm-28-7.jpg"
         },
         {
-            "File Identifier": "fm-28-70",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-28-70.pdf",
+            "Image File Name": "fm-28-70.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-28-70.pdf",
             "Width": 5354,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5535,8 +5535,8 @@
             "Created Image File Name": "dte_aerial_fm-28-70.jpg"
         },
         {
-            "File Identifier": "fm-28-71",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-28-71.pdf",
+            "Image File Name": "fm-28-71.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-28-71.pdf",
             "Width": 5354,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5545,8 +5545,8 @@
             "Created Image File Name": "dte_aerial_fm-28-71.jpg"
         },
         {
-            "File Identifier": "fm-28-72",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-28-72.pdf",
+            "Image File Name": "fm-28-72.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-28-72.pdf",
             "Width": 5354,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5555,8 +5555,8 @@
             "Created Image File Name": "dte_aerial_fm-28-72.jpg"
         },
         {
-            "File Identifier": "fm-28-73",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-28-73.pdf",
+            "Image File Name": "fm-28-73.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-28-73.pdf",
             "Width": 5354,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5565,8 +5565,8 @@
             "Created Image File Name": "dte_aerial_fm-28-73.jpg"
         },
         {
-            "File Identifier": "fm-28-74",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-28-74.pdf",
+            "Image File Name": "fm-28-74.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-28-74.pdf",
             "Width": 5354,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5575,8 +5575,8 @@
             "Created Image File Name": "dte_aerial_fm-28-74.jpg"
         },
         {
-            "File Identifier": "fm-28-75",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-28-75.pdf",
+            "Image File Name": "fm-28-75.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-28-75.pdf",
             "Width": 5354,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5585,8 +5585,8 @@
             "Created Image File Name": "dte_aerial_fm-28-75.jpg"
         },
         {
-            "File Identifier": "fm-28-76",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-28-76.pdf",
+            "Image File Name": "fm-28-76.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-28-76.pdf",
             "Width": 5354,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5595,8 +5595,8 @@
             "Created Image File Name": "dte_aerial_fm-28-76.jpg"
         },
         {
-            "File Identifier": "fm-28-77",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-28-77.pdf",
+            "Image File Name": "fm-28-77.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-28-77.pdf",
             "Width": 5354,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5605,8 +5605,8 @@
             "Created Image File Name": "dte_aerial_fm-28-77.jpg"
         },
         {
-            "File Identifier": "fm-28-78",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-28-78.pdf",
+            "Image File Name": "fm-28-78.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-28-78.pdf",
             "Width": 5354,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5615,8 +5615,8 @@
             "Created Image File Name": "dte_aerial_fm-28-78.jpg"
         },
         {
-            "File Identifier": "fm-28-79",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-28-79.pdf",
+            "Image File Name": "fm-28-79.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-28-79.pdf",
             "Width": 5354,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5625,8 +5625,8 @@
             "Created Image File Name": "dte_aerial_fm-28-79.jpg"
         },
         {
-            "File Identifier": "fm-28-8",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-28-8.pdf",
+            "Image File Name": "fm-28-8.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-28-8.pdf",
             "Width": 5344,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5635,8 +5635,8 @@
             "Created Image File Name": "dte_aerial_fm-28-8.jpg"
         },
         {
-            "File Identifier": "fm-28-80",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-28-80.pdf",
+            "Image File Name": "fm-28-80.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-28-80.pdf",
             "Width": 5354,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5645,8 +5645,8 @@
             "Created Image File Name": "dte_aerial_fm-28-80.jpg"
         },
         {
-            "File Identifier": "fm-28-81",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-28-81.pdf",
+            "Image File Name": "fm-28-81.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-28-81.pdf",
             "Width": 5354,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5655,8 +5655,8 @@
             "Created Image File Name": "dte_aerial_fm-28-81.jpg"
         },
         {
-            "File Identifier": "fm-28-82",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-28-82.pdf",
+            "Image File Name": "fm-28-82.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-28-82.pdf",
             "Width": 5354,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5665,8 +5665,8 @@
             "Created Image File Name": "dte_aerial_fm-28-82.jpg"
         },
         {
-            "File Identifier": "fm-28-83",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-28-83.pdf",
+            "Image File Name": "fm-28-83.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-28-83.pdf",
             "Width": 5354,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5675,8 +5675,8 @@
             "Created Image File Name": "dte_aerial_fm-28-83.jpg"
         },
         {
-            "File Identifier": "fm-28-84",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-28-84.pdf",
+            "Image File Name": "fm-28-84.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-28-84.pdf",
             "Width": 5354,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5685,8 +5685,8 @@
             "Created Image File Name": "dte_aerial_fm-28-84.jpg"
         },
         {
-            "File Identifier": "fm-28-85",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-28-85.pdf",
+            "Image File Name": "fm-28-85.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-28-85.pdf",
             "Width": 5354,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5695,8 +5695,8 @@
             "Created Image File Name": "dte_aerial_fm-28-85.jpg"
         },
         {
-            "File Identifier": "fm-28-86",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-28-86.pdf",
+            "Image File Name": "fm-28-86.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-28-86.pdf",
             "Width": 5354,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5705,8 +5705,8 @@
             "Created Image File Name": "dte_aerial_fm-28-86.jpg"
         },
         {
-            "File Identifier": "fm-28-87",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-28-87.pdf",
+            "Image File Name": "fm-28-87.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-28-87.pdf",
             "Width": 5354,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5715,8 +5715,8 @@
             "Created Image File Name": "dte_aerial_fm-28-87.jpg"
         },
         {
-            "File Identifier": "fm-28-88",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-28-88.pdf",
+            "Image File Name": "fm-28-88.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-28-88.pdf",
             "Width": 5354,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5725,8 +5725,8 @@
             "Created Image File Name": "dte_aerial_fm-28-88.jpg"
         },
         {
-            "File Identifier": "fm-28-89",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-28-89.pdf",
+            "Image File Name": "fm-28-89.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-28-89.pdf",
             "Width": 5354,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5735,8 +5735,8 @@
             "Created Image File Name": "dte_aerial_fm-28-89.jpg"
         },
         {
-            "File Identifier": "fm-28-9",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-28-9.pdf",
+            "Image File Name": "fm-28-9.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-28-9.pdf",
             "Width": 5344,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5745,8 +5745,8 @@
             "Created Image File Name": "dte_aerial_fm-28-9.jpg"
         },
         {
-            "File Identifier": "fm-28-90",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-28-90.pdf",
+            "Image File Name": "fm-28-90.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-28-90.pdf",
             "Width": 5354,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5755,8 +5755,8 @@
             "Created Image File Name": "dte_aerial_fm-28-90.jpg"
         },
         {
-            "File Identifier": "fm-28-91",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-28-91.pdf",
+            "Image File Name": "fm-28-91.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-28-91.pdf",
             "Width": 5354,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5765,8 +5765,8 @@
             "Created Image File Name": "dte_aerial_fm-28-91.jpg"
         },
         {
-            "File Identifier": "fm-28-92",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-28-92.pdf",
+            "Image File Name": "fm-28-92.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-28-92.pdf",
             "Width": 5354,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5775,8 +5775,8 @@
             "Created Image File Name": "dte_aerial_fm-28-92.jpg"
         },
         {
-            "File Identifier": "fm-28-93",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-28-93.pdf",
+            "Image File Name": "fm-28-93.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-28-93.pdf",
             "Width": 5354,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5785,8 +5785,8 @@
             "Created Image File Name": "dte_aerial_fm-28-93.jpg"
         },
         {
-            "File Identifier": "fm-28-94",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-28-94.pdf",
+            "Image File Name": "fm-28-94.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-28-94.pdf",
             "Width": 5354,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5795,8 +5795,8 @@
             "Created Image File Name": "dte_aerial_fm-28-94.jpg"
         },
         {
-            "File Identifier": "fm-28-95",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-28-95.pdf",
+            "Image File Name": "fm-28-95.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-28-95.pdf",
             "Width": 5354,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5805,8 +5805,8 @@
             "Created Image File Name": "dte_aerial_fm-28-95.jpg"
         },
         {
-            "File Identifier": "fm-28-96",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-28-96.pdf",
+            "Image File Name": "fm-28-96.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-28-96.pdf",
             "Width": 5354,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5815,8 +5815,8 @@
             "Created Image File Name": "dte_aerial_fm-28-96.jpg"
         },
         {
-            "File Identifier": "fm-28-97",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-28-97.pdf",
+            "Image File Name": "fm-28-97.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-28-97.pdf",
             "Width": 5320,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5825,8 +5825,8 @@
             "Created Image File Name": "dte_aerial_fm-28-97.jpg"
         },
         {
-            "File Identifier": "fm-28-98",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-28-98.pdf",
+            "Image File Name": "fm-28-98.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-28-98.pdf",
             "Width": 5320,
             "Height": 5100,
             "ColorSpace": "DeviceGray",
@@ -5835,8 +5835,8 @@
             "Created Image File Name": "dte_aerial_fm-28-98.jpg"
         },
         {
-            "File Identifier": "fm-28-99",
-            "Source Relative Path": "\\input\\part1\\macomb\\1961\\fm-28-99.pdf",
+            "Image File Name": "fm-28-99.pdf",
+            "Source Relative Path": "input\\part1\\macomb\\1961\\fm-28-99.pdf",
             "Width": 5320,
             "Height": 5100,
             "ColorSpace": "DeviceGray",

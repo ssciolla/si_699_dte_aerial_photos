@@ -1,5 +1,6 @@
 __pycache__
-arcgis_geocoding_cache.json
+address_pairs.xlsx
 geolocated_links.json
 link_coordinates.csv
 macomb_1961_index.geojson
+macomb_1961_index_v2.geojson
