@@ -4,6 +4,7 @@
 
 # os documentation: https://docs.python.org/3/library/os.html#module-os
 
+# standard modules
 import os
 import sys
 
@@ -22,3 +23,10 @@ def collect_relative_paths_for_files(target_directory_path):
 			("** Non-PDF file present! **")
 	os.chdir(root_directory)
 	return pdf_file_paths
+
+# Takes a row from a CSV and makes it into a Python dictionary using the CSVs headers as keys
+def create_dictionary_from_row(headers, csv_row):
+    entity_dict = {}
+    for field in headers:
+        entity_dict[field.strip()] = csv_row[headers.index(field)]
+    return entity_dict

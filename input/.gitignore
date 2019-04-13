@@ -1,2 +1,4 @@
-*
-!.gitignore
+address_pairs.csv
+address_pairs.xlsx
+manual_pairs.csv
+manual_pairs.xlsx

@@ -39,6 +39,7 @@ def pull_links_from_index(relative_path):
 	links = []
 	annotations = pdf_page['/Annots']
 	for annotation in annotations:
+		object_number = annotation.idnum
 		annot_object = annotation.getObject()
 		float_objects = annot_object['/Rect']
 		link_coords = []
@@ -52,7 +53,9 @@ def pull_links_from_index(relative_path):
 			print(annot_object['/AP']['/N'].getObject()['/Subtype'])
 		if '/F' in indirect_object.keys():
 			file_name = indirect_object['/F']['/F']
+			print(file_name)
 			link_dictionary = {
+				'PDF Object ID Number': object_number,
 				'Linked Image File Name': file_name,
 				'Link Coordinates': link_coords,
 				'File or URI?': 'File'}
@@ -62,6 +65,7 @@ def pull_links_from_index(relative_path):
 			print(indirect_object)
 			uri_name = indirect_object['/URI']
 			link_dictionary = {
+				'PDF Object ID Number': object_number,
 				'Linked Image File Name': uri_name,
 				'Link Coordinates': link_coords,
 				'File or URI': 'URI'
@@ -119,6 +123,7 @@ def extract_jpg_from_pdf(relative_path, output_location=''):
 
 # Manage function invocations and write resulting metadata to a JSON file
 def run_pypdf2_workflow(pdf_file_paths, output_location, output_name):
+	print("** PyPDF2 Solution **")
 	pypdf_start = time.time()
 	image_metadata_dicts = []
 	index_metadata_dicts = []
@@ -129,20 +134,20 @@ def run_pypdf2_workflow(pdf_file_paths, output_location, output_name):
 		else:
 			image_metadata_dict = extract_jpg_from_pdf(pdf_file_path, output_location)
 			image_metadata_dicts.append(image_metadata_dict)
-	sample_pypdf2_batch_metadata = {}
-	sample_pypdf2_batch_metadata['Index Records'] = index_metadata_dicts
-	sample_pypdf2_batch_metadata['Image Records'] = image_metadata_dicts
+	pypdf2_batch_metadata = {}
+	pypdf2_batch_metadata['Index Records'] = index_metadata_dicts
+	pypdf2_batch_metadata['Image Records'] = image_metadata_dicts
 	pypdf2_metadata_file = open('output/pypdf2/' + output_name, 'w', encoding='utf-8')
-	pypdf2_metadata_file.write(json.dumps(sample_pypdf2_batch_metadata, indent=4))
+	pypdf2_metadata_file.write(json.dumps(pypdf2_batch_metadata, indent=4))
 	pypdf2_metadata_file.close()
 	pypdf_end = time.time()
 	print('** Time to Run: {} **'.format(str(pypdf_end - pypdf_start)))
+	return pypdf2_batch_metadata
 
 ## Main Program
 
 if __name__=="__main__":
 	print("\n** DTE Aerial Batch Processing Script **")
-	print("** PyPDF2 Solution **")
 	output_location = 'output/pypdf2/'
-	pdf_file_paths = misc_functions.collect_relative_paths_for_files('input/part1/macomb/1961')
-	run_pypdf2_workflow(pdf_file_paths, output_location, 'sample_pypdf2_batch_metadata.json')
+	pdf_file_paths = misc_functions.collect_relative_paths_for_files('input/pdf_files/part1/macomb/1961')
+	batch_metadata = run_pypdf2_workflow(pdf_file_paths, output_location, 'sample_pypdf2_batch_metadata.json')

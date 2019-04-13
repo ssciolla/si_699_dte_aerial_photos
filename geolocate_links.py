@@ -7,15 +7,20 @@
 
 # ArcGIS documentation: https://esri.github.io/arcgis-python-api/apidoc/html/
 
-from arcgis import GIS
-from arcgis.geocoding import geocode, reverse_geocode
-
+# standard modules
 import json
 import csv
 import sys
 
+# third-party modules
+from arcgis import GIS
+from arcgis.geocoding import geocode, reverse_geocode
+
+# local modules
+import misc_functions
+
 CACHE_FILE_NAME = 'arcgis_geocoding_cache.json'
-ADDRESS_PAIRS_FILE_NAME = 'address_pairs.csv'
+ADDRESS_PAIRS_FILE_PATH = 'input/address_pairs.csv'
 
 gis = GIS()
 
@@ -36,7 +41,7 @@ def fetch_geocoding_data_with_caching(input_data, reverse=False):
     else:
         input_string = input_data
     if input_string in CACHE_DICTION:
-        print("** Pulling data from cache **")
+        # print("** Pulling data from cache **")
         return CACHE_DICTION[input_string]
     else:
         print("** Fetching new data from API **")
@@ -52,13 +57,6 @@ def fetch_geocoding_data_with_caching(input_data, reverse=False):
 
 ## General Functions
 
-# Takes a row from a CSV and makes it into a Python dictionary using the CSVs headers as keys
-def create_dictionary_from_row(headers, csv_row):
-    work_dict = {}
-    for field in headers:
-        work_dict[field.strip()] = csv_row[headers.index(field)]
-    return work_dict
-
 def find_mid_left_point(link_coords):
     x_one = link_coords[0]
     x_two = link_coords[2]
@@ -73,6 +71,7 @@ def create_new_link_records(batch_metadata):
     link_location_dicts = []
     for link in links:
         link_location_dict = {}
+        link_location_dict['PDF Object ID Number'] = link['PDF Object ID Number']
         link_location_dict['Linked Image PDF Identifier'] = link['Linked Image File Name'].replace('.pdf', '')
         x_value, y_value = find_mid_left_point(link['Link Coordinates'])
         link_location_dict['PDF X Coordinate'] = x_value
@@ -101,7 +100,6 @@ def find_constants_for_formulas(address_pair_dict):
 
     y_slope = (address_one_lon - address_two_lon) / (address_one_y - address_two_y)
     y_intercept = address_one_lon - (y_slope * address_one_y)
-
     return (x_slope, x_intercept, y_slope, y_intercept)
 
 def convert_between_systems(value, slope, intercept):
@@ -142,8 +140,8 @@ def crosswalk_to_geojson(link_records):
     geojson_wrapper['features'] = geojson_dicts
     return geojson_wrapper
 
-def create_link_coordinates_csv(link_dictionaries):
-    link_coordinates_csv_file = open("link_coordinates.csv", "w", newline='', encoding='utf-8')
+def create_link_coordinates_csv(link_dictionaries, output_location):
+    link_coordinates_csv_file = open(output_location + 'link_coordinates.csv', 'w', newline='', encoding='utf-8')
     csvwriter = csv.writer(link_coordinates_csv_file)
     headers = ['File Name', 'PDF X Coordinate', 'PDF Y Coordinate']
     csvwriter.writerow(headers)
@@ -155,40 +153,45 @@ def create_link_coordinates_csv(link_dictionaries):
         ])
     link_coordinates_csv_file.close()
 
-## Main Program
-
-if __name__=="__main__":
-    print("\n** DTE Aerial Batch Processing Script **")
+def run_geolocation_workflow(batch_metadata_file_path, output_location='output/'):
     print("** Link Geolocation **")
 
     # Load data from batch metadata and address pairs files
-    batch_metadata_file_name = sys.argv[1]
-    batch_metadata_file = open(batch_metadata_file_name, 'r', encoding='utf-8')
+    batch_metadata_file = open(batch_metadata_file_path, 'r', encoding='utf-8')
     batch_metadata = json.loads(batch_metadata_file.read())
     batch_metadata_file.close()
 
-    addresses_csv_file = open(ADDRESS_PAIRS_FILE_NAME, 'r', newline='', encoding='utf-8-sig')
+    addresses_csv_file = open(ADDRESS_PAIRS_FILE_PATH, 'r', newline='', encoding='utf-8-sig')
     csvreader = csv.reader(addresses_csv_file)
     rows = []
     for row in csvreader:
         rows.append(row)
+    addresses_csv_file.close()
     headers = rows[0]
     address_pairs = []
     for row in rows[1:]:
-        address_pairs.append(create_dictionary_from_row(headers, row))
+        address_pairs.append(misc_functions.create_dictionary_from_row(headers, row))
 
     # Create base link records, write coordinates to CSV, add geolocation info, and then crosswalk to GeoJSON
     link_records = create_new_link_records(batch_metadata)
     macomb_test_address_pair = address_pairs[0]
-    create_link_coordinates_csv(link_records)
+    create_link_coordinates_csv(link_records, output_location)
     geolocated_link_records = geolocate_link_records(link_records, macomb_test_address_pair)
     geojson_feature_collection = crosswalk_to_geojson(geolocated_link_records)
 
     # Write data to files as plain JSON and GeoJSON
-    geolocated_links_file = open('geolocated_links.json', 'w', encoding='utf-8')
+    geolocated_links_file = open(output_location + 'geolocated_links.json', 'w', encoding='utf-8')
     geolocated_links_file.write(json.dumps(geolocated_link_records, indent=4))
     geolocated_links_file.close()
 
-    geojson_file = open('macomb_1961_index_v2.geojson', 'w', encoding='utf-8')
+    geojson_file = open(output_location + 'macomb_1961_index_v2.geojson', 'w', encoding='utf-8')
     geojson_file.write(json.dumps(geojson_feature_collection, indent=4))
     geojson_file.close()
+    return geolocated_link_records
+
+## Main Program
+
+if __name__=="__main__":
+    print("\n** DTE Aerial Batch Processing Script **")
+    batch_metadata_file_path = sys.argv[1]
+    geolocated_link_records = run_geolocation_workflow(batch_metadata_file_path)
