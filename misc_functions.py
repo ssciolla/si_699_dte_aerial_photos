@@ -7,6 +7,19 @@
 # standard modules
 import os
 import sys
+import time
+
+# Uses time module to create a timestamp to indicate when a record was created
+def make_timestamp():
+    current_time = time.localtime()
+    timestamp = "{}-{}-{}-{}:{}".format(
+			current_time.tm_year,
+			current_time.tm_mon,
+			current_time.tm_mday,
+			current_time.tm_hour,
+			current_time.tm_min
+	)
+    return timestamp
 
 # Collect all relative paths from root directory to files
 def collect_relative_paths_for_files(target_directory_path):

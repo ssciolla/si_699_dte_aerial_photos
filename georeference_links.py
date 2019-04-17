@@ -1,5 +1,5 @@
 # DTE Aerial Photo Collection curation project
-# Workflow for geolocating links from a PDF index file
+# Workflow for georeferencing links from a PDF index file
 # Garrett Morton, Sam Sciolla
 # SI 699
 
@@ -106,42 +106,26 @@ def convert_between_systems(value, slope, intercept):
     new_value = (slope * value) + intercept
     return new_value
 
-def check_county_using_geolocation(coordinate_pair):
+def check_county_using_geocoordinates(coordinate_pair):
     data = fetch_geocoding_data_with_caching(coordinate_pair, True)
     county = data['address']['Subregion']
     return county
 
-def geolocate_link_records(link_records, address_pair_dict):
+def georeference_link_records(link_records, address_pair_dict):
     x_slope, x_intercept, y_slope, y_intercept = find_constants_for_formulas(address_pair_dict)
-    geolocated_link_records = []
+    georeferenced_link_records = []
     for link_record in link_records:
-        geolocated_link_record = link_record.copy()
-        geolocated_link_record['Latitude'] = convert_between_systems(geolocated_link_record['PDF X Coordinate'], x_slope, x_intercept)
-        geolocated_link_record['Longitude'] = convert_between_systems(geolocated_link_record['PDF Y Coordinate'], y_slope, y_intercept)
-        coordinate_pair = [geolocated_link_record['Latitude'], geolocated_link_record['Longitude']]
-        geolocated_link_record['Current County'] = check_county_using_geolocation(coordinate_pair)
-        geolocated_link_records.append(geolocated_link_record)
-    return geolocated_link_records
+        georeferenced_link_record = link_record.copy()
+        georeferenced_link_record['Latitude'] = convert_between_systems(georeferenced_link_record['PDF X Coordinate'], x_slope, x_intercept)
+        georeferenced_link_record['Longitude'] = convert_between_systems(georeferenced_link_record['PDF Y Coordinate'], y_slope, y_intercept)
+        coordinate_pair = [georeferenced_link_record['Latitude'], georeferenced_link_record['Longitude']]
+        georeferenced_link_record['Current County'] = check_county_using_geocoordinates(coordinate_pair)
+        georeferenced_link_records.append(georeferenced_link_record)
+    return georeferenced_link_records
 
-def crosswalk_to_geojson(link_records):
-    geojson_dicts = []
-    for link_record in link_records:
-        geojson_dict = {}
-        geojson_dict['type'] = 'Feature'
-        geojson_dict['geometry'] = {}
-        geojson_dict['geometry']['type'] = 'Point'
-        geojson_dict['geometry']['coordinates'] = [link_record['Latitude'], link_record['Longitude']]
-        geojson_dict['properties'] = {}
-        geojson_dict['properties']['name'] = link_record['Linked Image PDF Identifier']
-        geojson_dict['properties']['county'] = link_record['Current County']
-        geojson_dicts.append(geojson_dict)
-    geojson_wrapper = {}
-    geojson_wrapper['type'] = 'FeatureCollection'
-    geojson_wrapper['features'] = geojson_dicts
-    return geojson_wrapper
-
-def create_link_coordinates_csv(link_dictionaries, output_location):
-    link_coordinates_csv_file = open(output_location + 'link_coordinates.csv', 'w', newline='', encoding='utf-8')
+def create_link_coordinates_csv(link_dictionaries, index_file_name, output_location='output/'):
+    link_coordinates_file_name = index_file_name.replace('.pdf', '') + '_link_coordinates.csv'
+    link_coordinates_csv_file = open(output_location + link_coordinates_file_name, 'w', newline='', encoding='utf-8')
     csvwriter = csv.writer(link_coordinates_csv_file)
     headers = ['File Name', 'PDF X Coordinate', 'PDF Y Coordinate']
     csvwriter.writerow(headers)
@@ -153,13 +137,15 @@ def create_link_coordinates_csv(link_dictionaries, output_location):
         ])
     link_coordinates_csv_file.close()
 
-def run_geolocation_workflow(batch_metadata_file_path, output_location='output/'):
-    print("** Link Geolocation **")
+def run_georeferencing_workflow(batch_metadata_file_path, output_name, output_location='output/'):
+    print("** Link Georeferencing **")
 
     # Load data from batch metadata and address pairs files
     batch_metadata_file = open(batch_metadata_file_path, 'r', encoding='utf-8')
     batch_metadata = json.loads(batch_metadata_file.read())
     batch_metadata_file.close()
+
+    index_file_name = batch_metadata['Index Records'][0]['Index File Name']
 
     addresses_csv_file = open(ADDRESS_PAIRS_FILE_PATH, 'r', newline='', encoding='utf-8-sig')
     csvreader = csv.reader(addresses_csv_file)
@@ -172,26 +158,31 @@ def run_geolocation_workflow(batch_metadata_file_path, output_location='output/'
     for row in rows[1:]:
         address_pairs.append(misc_functions.create_dictionary_from_row(headers, row))
 
-    # Create base link records, write coordinates to CSV, add geolocation info, and then crosswalk to GeoJSON
+    pair_index = 0
+    for address_pair in address_pairs:
+        if address_pair['Index File Name'] == index_file_name:
+            batch_address_pair = address_pair
+            break
+        pair_index += 1
+    if pair_index == len(address_pairs):
+        print('?? No address pair found for {} ??'.format(index_file_name))
+
+    # Create base link records, write coordinates to CSV, load address pair data, and add georeferencing info
     link_records = create_new_link_records(batch_metadata)
-    macomb_test_address_pair = address_pairs[0]
-    create_link_coordinates_csv(link_records, output_location)
-    geolocated_link_records = geolocate_link_records(link_records, macomb_test_address_pair)
-    geojson_feature_collection = crosswalk_to_geojson(geolocated_link_records)
+    create_link_coordinates_csv(link_records, index_file_name)
 
-    # Write data to files as plain JSON and GeoJSON
-    geolocated_links_file = open(output_location + 'geolocated_links.json', 'w', encoding='utf-8')
-    geolocated_links_file.write(json.dumps(geolocated_link_records, indent=4))
-    geolocated_links_file.close()
+    georeferenced_link_records = georeference_link_records(link_records, batch_address_pair)
 
-    geojson_file = open(output_location + 'macomb_1961_index_v2.geojson', 'w', encoding='utf-8')
-    geojson_file.write(json.dumps(geojson_feature_collection, indent=4))
-    geojson_file.close()
-    return geolocated_link_records
+    # Write data to file as plain JSON
+    georeferenced_links_file = open(output_location + output_name, 'w', encoding='utf-8')
+    georeferenced_links_file.write(json.dumps(georeferenced_link_records, indent=4))
+    georeferenced_links_file.close()
+
+    return georeferenced_link_records
 
 ## Main Program
 
 if __name__=="__main__":
     print("\n** DTE Aerial Batch Processing Script **")
     batch_metadata_file_path = sys.argv[1]
-    geolocated_link_records = run_geolocation_workflow(batch_metadata_file_path)
+    georeferenced_link_records = run_georeferencing_workflow(batch_metadata_file_path, 'sample_georeferenced_links.json')

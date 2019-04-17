@@ -53,7 +53,6 @@ def pull_links_from_index(relative_path):
 			print(annot_object['/AP']['/N'].getObject()['/Subtype'])
 		if '/F' in indirect_object.keys():
 			file_name = indirect_object['/F']['/F']
-			print(file_name)
 			link_dictionary = {
 				'PDF Object ID Number': object_number,
 				'Linked Image File Name': file_name,
