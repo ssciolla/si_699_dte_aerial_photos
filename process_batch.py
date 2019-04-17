@@ -15,9 +15,8 @@ import extract_using_pypdf
 import georeference_links
 import misc_functions
 
-# Global variables
+# Global variable
 MANUAL_PAIRS_FILENAME = 'manual_pairs.csv'
-BATCH_DIRECTORY_PATH = 'input/pdf_files/part1/macomb/1961'
 
 ## Functions
 
@@ -40,7 +39,7 @@ def create_full_record(image_record, georeferenced_link_record, shared_descripti
     }
     full_image_record['Preservation'] = {
         'Source Relative Path': image_record['Source Relative Path'],
-        'Date and Time of Record Creation': misc_functions.make_timestamp()
+        'Date and Time Created': misc_functions.make_timestamp()
     }
     return full_image_record
 
@@ -124,22 +123,7 @@ def process_or_load(mode, batch_directory_path, county_year):
         print("-- Invalid mode input --")
     return (batch_metadata, georeferenced_link_records)
 
-## Main Program
-
-if __name__=="__main__":
-    print("\n** DTE Aerial Batch Processing Script **")
-
-    # Creating or loading image records and georeferenced link records
-    mode = sys.argv[1]
-    county_year = '_'.join(BATCH_DIRECTORY_PATH.split('/')[-2:])
-    batch_metadata, georeferenced_link_records = process_or_load(mode, BATCH_DIRECTORY_PATH, county_year)
-    image_records = batch_metadata['Image Records']
-
-    shared_descriptive_metadata = {}
-    source_relative_path = batch_metadata['Index Records'][0]['Source Relative Path']
-    shared_descriptive_metadata['Year'] = source_relative_path.split('\\')[-2]
-    shared_descriptive_metadata['Index County'] = source_relative_path.split('\\')[-3]
-
+def load_and_setup_manual_pairs():
     try:
         manual_pairs_file = open('input/' + MANUAL_PAIRS_FILENAME, 'r', newline='', encoding='utf-8')
         csvreader = csv.reader(manual_pairs_file)
@@ -156,6 +140,29 @@ if __name__=="__main__":
             manual_pairs[dict_row['Image Identifier']] = dict_row['PDF Object ID Number']
     except:
         manual_pairs = {}
+
+## Main Program
+
+if __name__=="__main__":
+    print("\n** DTE Aerial Batch Processing Script **")
+
+    mode = sys.argv[1]
+
+    # Setting target directory
+    try:
+        batch_directory_path = sys.argv[2]
+    else:
+        batch_directory_path = 'input/pdf_files/part1/macomb/1961'
+
+    # Creating or loading image records and georeferenced link records
+    county_year = '_'.join(batch_directory_path.split('/')[-2:])
+    batch_metadata, georeferenced_link_records = process_or_load(mode, batch_directory_path, county_year)
+    image_records = batch_metadata['Image Records']
+
+    shared_descriptive_metadata = {}
+    source_relative_path = batch_metadata['Index Records'][0]['Source Relative Path']
+    shared_descriptive_metadata['Year'] = source_relative_path.split('\\')[-2]
+    shared_descriptive_metadata['Index County'] = source_relative_path.split('\\')[-3]
 
     full_image_records, match_issues = combine_image_and_link_records(image_records, georeferenced_link_records, shared_descriptive_metadata, manual_pairs)
 
