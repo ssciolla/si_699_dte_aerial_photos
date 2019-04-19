@@ -22,8 +22,6 @@ import misc_functions
 CACHE_FILE_NAME = 'arcgis_geocoding_cache.json'
 ADDRESS_PAIRS_FILE_PATH = 'input/address_pairs.csv'
 
-gis = GIS()
-
 ## Caching
 
 # Setting up geocoding caching dictionary.
@@ -138,7 +136,8 @@ def create_link_coordinates_csv(link_dictionaries, index_file_name, output_locat
     link_coordinates_csv_file.close()
 
 def run_georeferencing_workflow(batch_metadata_file_path, output_name, output_location='output/'):
-    print("** Link Georeferencing **")
+    print('\n** Link Georeferencing **')
+    gis = GIS()
 
     # Load data from batch metadata and address pairs files
     batch_metadata_file = open(batch_metadata_file_path, 'r', encoding='utf-8')

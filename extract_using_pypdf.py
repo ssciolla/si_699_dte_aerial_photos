@@ -122,7 +122,7 @@ def extract_jpg_from_pdf(relative_path, output_location=''):
 
 # Manage function invocations and write resulting metadata to a JSON file
 def run_pypdf2_workflow(pdf_file_paths, output_location, output_name):
-	print("** PyPDF2 Solution **")
+	print('** Image Extraction: PyPDF2 Solution **')
 	pypdf_start = time.time()
 	image_metadata_dicts = []
 	index_metadata_dicts = []
@@ -146,7 +146,7 @@ def run_pypdf2_workflow(pdf_file_paths, output_location, output_name):
 ## Main Program
 
 if __name__=="__main__":
-	print("\n** DTE Aerial Batch Processing Script **")
+	print('\n** DTE Aerial Batch Processing Script **')
 	output_location = 'output/pypdf2/'
 	pdf_file_paths = misc_functions.collect_relative_paths_for_files('input/pdf_files/part1/macomb/1961')
 	batch_metadata = run_pypdf2_workflow(pdf_file_paths, output_location, 'sample_pypdf2_batch_metadata.json')

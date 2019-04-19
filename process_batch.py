@@ -20,6 +20,7 @@ MANUAL_PAIRS_FILENAME = 'manual_pairs.csv'
 
 ## Functions
 
+# Use image, index and link metadata to create full records for each image file
 def create_full_record(image_record, georeferenced_link_record, shared_descriptive_metadata):
     full_image_record = {}
     full_image_record['File Name'] = image_record['Created Image File Name']
@@ -43,45 +44,65 @@ def create_full_record(image_record, georeferenced_link_record, shared_descripti
     }
     return full_image_record
 
-def find_link_record_with_id(id_num, georeferenced_link_records):
-    for georeferenced_link_record in georeferenced_link_records:
-        if georeferenced_link_record['PDF Object ID Number'] == int(id_num):
-            return georeferenced_link_record
+# Fetch a link record from all the link records based on its PDF Object ID Number
+def find_link_record_with_id(id_num, link_records):
+    for link_record in link_records:
+        if link_record['PDF Object ID Number'] == int(id_num):
+            return link_record
     return None
 
-def combine_image_and_link_records(image_records, link_records, shared_descriptive_metadata, manual_pairs):
+# Take previous records, combine them, and accumulate a list of full records
+def match_and_combine_records(image_records, link_records, shared_descriptive_metadata, manual_pairs):
+    print('\n** Image and Link Matching **')
     full_image_records = []
-    georeferenced_link_records_matched = []
+    matched_link_record_ids = []
     match_issues = False
     for image_record in image_records:
-        batch_identifier = image_record['Image File Name'].replace('.pdf', '')
+        file_identifier = image_record['Image File Name'].replace('.pdf', '')
         # If an image and link match has been made manually in manual_pairs.csv, make the match
-        if batch_identifier in manual_pairs.keys():
-            georeferenced_link_record = find_link_record_with_id(manual_pairs[batch_identifier], georeferenced_link_records)
-            full_image_record = create_full_record(image_record, georeferenced_link_record, shared_descriptive_metadata)
-            georeferenced_link_records_matched.append(georeferenced_link_record['PDF Object ID Number'])
+        if file_identifier in manual_pairs.keys():
+            link_record_found = find_link_record_with_id(manual_pairs[file_identifier], link_records)
+            full_image_record = create_full_record(image_record, link_record_found, shared_descriptive_metadata)
             full_image_records.append(full_image_record)
+            matched_link_record_ids.append(link_record_found['PDF Object ID Number'])
         else:
-            # Otherwise find a link pointing to the same file as the image, and make the match
+            # Otherwise find all links pointing to the same file as the image
             matching_link_records = []
-            for georeferenced_link_record in georeferenced_link_records:
-                if georeferenced_link_record['Linked Image PDF Identifier'] == batch_identifier:
-                    matching_link_records.append(georeferenced_link_record)
-                    georeferenced_link_records_matched.append(georeferenced_link_record['PDF Object ID Number'])
+            for link_record in link_records:
+                if link_record['Linked Image PDF Identifier'] == file_identifier:
+                    matching_link_records.append(link_record)
+            # If there is exactly one link, make the match
             if len(matching_link_records) == 1:
-                full_image_record = create_full_record(image_record, georeferenced_link_record, shared_descriptive_metadata)
+                matching_link_record = matching_link_records[0]
+                full_image_record = create_full_record(image_record, matching_link_record, shared_descriptive_metadata)
                 full_image_records.append(full_image_record)
+                matched_link_record_ids.append(matching_link_record['PDF Object ID Number'])
             else:
-                if match_issues == False:
+                # Otherwise, report the match issue
+                if not match_issues:
                     match_issues = True
                 if len(matching_link_records) == 0:
-                    print('-- No link records found for file identifier: {} --'.format(batch_identifier))
+                    print('-- No link records found for file identifier: {} --'.format(file_identifier))
                 else:
-                    print('-- More than one link record found for file identifier: {} --'.format(batch_identifier))
+                    print('-- More than one link record found for file identifier: {} --'.format(file_identifier))
                     for matching_link_record in matching_link_records:
-                        print('-- PDF Object ID Number: {} --'.format(matching_link_record['PDF Object ID Number']))
+                        print('     -- PDF Object ID Number: {} --'.format(matching_link_record['PDF Object ID Number']))
+
+    # Checking if any link records were not matched
+    link_record_object_ids = []
+    for link_record in link_records:
+        link_record_object_ids.append(link_record['PDF Object ID Number'])
+    unmatched_link_record_ids = []
+    for link_record_object_id in link_record_object_ids:
+        if link_record_object_id not in matched_link_record_ids:
+            unmatched_link_record_ids.append(link_record_object_id)
+    if len(unmatched_link_record_ids) > 0:
+        print('-- {} link records were not matched --'.format(len(unmatched_link_record_ids)))
+        for unmatched_link_record_id in unmatched_link_record_ids:
+            print('     -- PDF Object ID Number: {} --'.format(unmatched_link_record_id))
     return (full_image_records, match_issues)
 
+# Uses full records to create a GeoJSON file for output
 def crosswalk_to_geojson(records):
     geojson_dicts = []
     for record in records:
@@ -103,27 +124,30 @@ def crosswalk_to_geojson(records):
     geojson_wrapper['features'] = geojson_dicts
     return geojson_wrapper
 
-def process_or_load(mode, batch_directory_path, county_year):
-    batch_metadata_file_name = county_year + '_batch_metadata.json'
-    georeferenced_links_file_name = county_year + '_georeferenced_links.json'
+# Prepare data by running extraction and georeferencing workflows or by loading previous output files
+def process_or_load(mode, batch_directory_path, output_directory_path, county_year_combo):
+    batch_metadata_file_name = county_year_combo + '_batch_metadata.json'
+    georeferenced_links_file_name = county_year_combo + '_georeferenced_links.json'
     if mode == 'process':
         print('~~ Executing extraction and georeferencing workflows ~~')
         pdf_file_paths = misc_functions.collect_relative_paths_for_files(batch_directory_path)
-        batch_metadata = extract_using_pypdf.run_pypdf2_workflow(pdf_file_paths, 'output/pypdf2/', batch_metadata_file_name)
-        georeferenced_link_records = georeference_links.run_georeferencing_workflow('output/pypdf2/' + batch_metadata_file_name, georeferenced_links_file_name)
+        batch_metadata = extract_using_pypdf.run_pypdf2_workflow(pdf_file_paths, output_directory_path + 'pypdf2/', batch_metadata_file_name)
+        georeferenced_link_records = georeference_links.run_georeferencing_workflow(output_directory_path + 'pypdf2/' + batch_metadata_file_name, georeferenced_links_file_name)
     elif mode == 'load':
         print('~~ Loading data from previous workflow executions ~~')
-        batch_metadata_file = open('output/pypdf2/' + batch_metadata_file_name, 'r', encoding='utf-8')
+        batch_metadata_file = open(output_directory_path + 'pypdf2/' + batch_metadata_file_name, 'r', encoding='utf-8')
         batch_metadata = json.loads(batch_metadata_file.read())
         batch_metadata_file.close()
-        georeferenced_links_file = open('output/' + georeferenced_links_file_name, 'r', encoding='utf-8')
+        georeferenced_links_file = open(output_directory_path + georeferenced_links_file_name, 'r', encoding='utf-8')
         georeferenced_link_records = json.loads(georeferenced_links_file.read())
         georeferenced_links_file.close()
     else:
         print("-- Invalid mode input --")
     return (batch_metadata, georeferenced_link_records)
 
-def load_and_setup_manual_pairs():
+# Load manual_pairs.csv and use data to create a dictionary with image identifiers as values and PDF object
+# ID numbers as their associated keys.
+def load_manual_pairs():
     try:
         manual_pairs_file = open('input/' + MANUAL_PAIRS_FILENAME, 'r', newline='', encoding='utf-8')
         csvreader = csv.reader(manual_pairs_file)
@@ -140,45 +164,59 @@ def load_and_setup_manual_pairs():
             manual_pairs[dict_row['Image Identifier']] = dict_row['PDF Object ID Number']
     except:
         manual_pairs = {}
+    return manual_pairs
 
 ## Main Program
 
 if __name__=="__main__":
     print("\n** DTE Aerial Batch Processing Script **")
 
-    mode = sys.argv[1]
+    data_gathering_mode = sys.argv[1]
 
-    # Setting target directory
+    # Setting target directory path for batch processing
     try:
         batch_directory_path = sys.argv[2]
-    else:
+    except:
+        # proof of concept directory
         batch_directory_path = 'input/pdf_files/part1/macomb/1961'
 
+    # Setting output directory for new files (output directory must have a pypdf subdirectory)
+    try:
+        output_directory_path = sys.argv[3]
+    except:
+        # proof of concept directory
+        output_directory_path = 'output/'
+
     # Creating or loading image records and georeferenced link records
-    county_year = '_'.join(batch_directory_path.split('/')[-2:])
-    batch_metadata, georeferenced_link_records = process_or_load(mode, batch_directory_path, county_year)
+    county_year_combo = '_'.join(batch_directory_path.split('/')[-2:])
+    batch_metadata, georeferenced_link_records = process_or_load(data_gathering_mode, batch_directory_path, output_directory_path, county_year_combo)
     image_records = batch_metadata['Image Records']
 
+    # Creating base descriptive metadata dictionary for values shared by image files
     shared_descriptive_metadata = {}
     source_relative_path = batch_metadata['Index Records'][0]['Source Relative Path']
     shared_descriptive_metadata['Year'] = source_relative_path.split('\\')[-2]
     shared_descriptive_metadata['Index County'] = source_relative_path.split('\\')[-3]
 
-    full_image_records, match_issues = combine_image_and_link_records(image_records, georeferenced_link_records, shared_descriptive_metadata, manual_pairs)
+    # Running matching algorithm
+    manual_pairs = load_manual_pairs()
+    full_image_records, match_issues = match_and_combine_records(image_records, georeferenced_link_records, shared_descriptive_metadata, manual_pairs)
 
-    full_image_records_file = open('output/dte_aerial_{}_image_records.json'.format(county_year), 'w', encoding='utf-8')
+    # Writing full records to output file
+    full_image_records_file = open(output_directory_path + 'dte_aerial_{}_image_records.json'.format(county_year_combo), 'w', encoding='utf-8')
     full_image_records_file.write(json.dumps(full_image_records, indent=4))
     full_image_records_file.close()
 
-    # Crosswalking records to GeoJSON
+    # Crosswalking records to GeoJSON and writing to output file
     geojson_feature_collection = crosswalk_to_geojson(full_image_records)
-    geojson_file = open('output/' + county_year + '_image_locations.geojson', 'w', encoding='utf-8')
+    geojson_file = open(output_directory_path + county_year_combo + '_image_locations.geojson', 'w', encoding='utf-8')
     geojson_file.write(json.dumps(geojson_feature_collection, indent=4))
     geojson_file.close()
 
-    print('** Script Results Summary **')
-    if match_issues == True:
-        print('-- Either a match failed or an image record had multiple matches --')
+    # Outputting report to command prompt
+    print('\n** Script Results Summary **')
+    if match_issues:
+        print('-- One or more matches failed, or one or more image records had multiple matches --')
         print('-- Investigate and add file name and PDF object pairs to manual_pairs.csv --')
     else:
         print('++ No match issues occurred ++')
