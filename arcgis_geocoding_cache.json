@@ -14376,5 +14376,69 @@
                 "latestWkid": 4326
             }
         }
+    },
+    "-82.84937381171548, 42.670245806882974": {
+        "address": {
+            "Match_addr": "50100-50998 Richard W Blvd, New Baltimore, Michigan, 48051",
+            "LongLabel": "50100-50998 Richard W Blvd, New Baltimore, MI, 48051, USA",
+            "ShortLabel": "50100-50998 Richard W Blvd",
+            "Addr_type": "StreetAddress",
+            "Type": "",
+            "PlaceName": "",
+            "AddNum": "50552",
+            "Address": "50552 Richard W Blvd",
+            "Block": "",
+            "Sector": "",
+            "Neighborhood": "",
+            "District": "",
+            "City": "New Baltimore",
+            "MetroArea": "Detroit Metro",
+            "Subregion": "Macomb County",
+            "Region": "Michigan",
+            "Territory": "",
+            "Postal": "48051",
+            "PostalExt": "",
+            "CountryCode": "USA"
+        },
+        "location": {
+            "x": -82.84954292656153,
+            "y": 42.67023802185111,
+            "spatialReference": {
+                "wkid": 4326,
+                "latestWkid": 4326
+            }
+        }
+    },
+    "-82.84890247594143, 42.6580993952172": {
+        "address": {
+            "Match_addr": "48051, New Baltimore, Michigan",
+            "LongLabel": "48051, New Baltimore, MI, USA",
+            "ShortLabel": "48051",
+            "Addr_type": "Postal",
+            "Type": "",
+            "PlaceName": "48051",
+            "AddNum": "",
+            "Address": "",
+            "Block": "",
+            "Sector": "",
+            "Neighborhood": "",
+            "District": "",
+            "City": "New Baltimore",
+            "MetroArea": "",
+            "Subregion": "Macomb County",
+            "Region": "Michigan",
+            "Territory": "",
+            "Postal": "48051",
+            "PostalExt": "",
+            "CountryCode": "USA"
+        },
+        "location": {
+            "x": -82.84890247594143,
+            "y": 42.6580993952172,
+            "spatialReference": {
+                "wkid": 4326,
+                "latestWkid": 4326
+            }
+        }
     }
 }
