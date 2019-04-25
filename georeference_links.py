@@ -37,7 +37,7 @@ except:
 
 # Function either geocodes (converts street address to coordinates) or reverse geocodes (converts coordinates to street address).
 # When reverse=false, input_data should be single-line address (string) that is used to query a set of coordinates.
-# When reverse=true, input_data should be a latitude longitude pair (tuple or list) that is used to look up a street address (to find county name).
+# When reverse=true, input_data should be a latitude longitude pair (tuple or list) that is used to look up a street address (used here to find county name).
 def fetch_geocoding_data_with_caching(input_data, reverse=False):
     global HIT_API_YET
     if reverse == True:
@@ -64,7 +64,7 @@ def fetch_geocoding_data_with_caching(input_data, reverse=False):
 
 ## General Functions
 
-# Standardize point on index PDF link box to correspond to rough real-world map location. Input PDF coordinates defining link box.
+# Standardize point on index PDF link box to correspond to rough real-world map location. Argument: PDF coordinates defining link box.
 def find_mid_left_point(link_coords):
     x_one = link_coords[0]
     x_two = link_coords[2]
@@ -110,10 +110,12 @@ def find_constants_for_formulas(address_pair_dict):
     y_intercept = address_one_lon - (y_slope * address_one_y)
     return (x_slope, x_intercept, y_slope, y_intercept)
 
+# Implements coordinate conversion formula
 def convert_between_systems(value, slope, intercept):
     new_value = (slope * value) + intercept
     return new_value
 
+# Reverse geocode input coordinates (pair or list), extract county name from result, and return county name (string).
 def check_county_using_geocoordinates(coordinate_pair):
     data = fetch_geocoding_data_with_caching(coordinate_pair, reverse=True)
     county = data['address']['Subregion']

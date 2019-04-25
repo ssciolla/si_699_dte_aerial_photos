@@ -38,6 +38,17 @@ def collect_relative_paths_for_files(target_directory_path):
 	os.chdir(root_directory)
 	return pdf_file_paths
 
+# Check if output directory has correct subdirectory; adds subdirectory if does not already exit. Argument: relative path (string), name of subdirectory to check for. Returns nothing.
+def output_subdirectory(output_dir_path="output/", output_subdir_name="pypdf"):
+    make_subdir = True
+    with os.scandir(output_dir_path) as dir_objects:
+        for entry in dir_objects:
+            if entry.name == output_subdir_name and entry.is_dir() == True:
+                make_subdir = False
+    if make_subdir:
+        os.mkdir(output_dir_path + output_subdir_name)
+    return None
+
 # Take a row from a CSV and makes it into a Python dictionary using the CSVs headers as keys
 def create_dictionary_from_row(headers, csv_row):
     entity_dict = {}

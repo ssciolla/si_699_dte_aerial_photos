@@ -24,6 +24,7 @@ FILES_WITHOUT_LINKS = 'files_without_links.csv'
 
 # Using functions from georeference_links.py, calculate geocoordinates and county for an image file based on
 # the file identifier's coordinates in the index PDF
+# Arguments: PDF coordinate pair (pair or list) and dictionary of formula coefficients (dictionary). Returns: dictionary with real-world coordinates (dictionary) and name of county (string)
 def collect_arcgis_info_for_coordinate_pair(xy_pair, constants):
     geocoordinates = {}
     latitude = georeference_links.convert_between_systems(float(xy_pair[0]), constants['X Slope'], constants['X Intercept'])
@@ -101,6 +102,7 @@ def create_base_record(batch_metadata):
     return base_record
 
 # Uses full records to create a GeoJSON file for output
+# Argument: list of record dictionaries. Returns geojson-formatted dictionary describing a GIS point feature for each image.
 def crosswalk_to_geojson(records):
     geojson_dicts = []
     for record in records:
@@ -234,6 +236,9 @@ if __name__=="__main__":
     except:
         # proof of concept directory
         output_directory_path = 'output/'
+
+    # Create subdirectory of output directory named "pypdf2" if it does not already exist
+    misc_functions.output_subdirectory(output_directory_path, "pypdf2")
 
     # Creating or loading image records and georeferenced link records
     county_year_combo = '_'.join(batch_directory_path.split('/')[-2:])
