@@ -178,7 +178,7 @@ def match_and_combine_records(image_records, georeferenced_link_data, base_recor
                     print('-- More than one link record found for file identifier: {} --'.format(file_identifier))
                     for matching_link_record in matching_link_records:
                         print('     -- PDF Object ID Number: {} --'.format(matching_link_record['PDF Object ID Number']))
-        # print(full_image_record)
+        # print(full_image_record) #for testing
     # Checking if any link records were not matched
     link_record_object_ids = []
     for link_record in link_records:
