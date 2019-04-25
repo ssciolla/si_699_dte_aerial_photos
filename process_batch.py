@@ -22,7 +22,7 @@ FILES_WITHOUT_LINKS = 'files_without_links.csv'
 
 ## Functions
 
-# Using functions from georeference_links.py, collect geocoordinates and county based for an image file based on
+# Using functions from georeference_links.py, calculate geocoordinates and county for an image file based on
 # the file identifier's coordinates in the index PDF
 def collect_arcgis_info_for_coordinate_pair(xy_pair, constants):
     geocoordinates = {}
@@ -229,6 +229,8 @@ if __name__=="__main__":
     # Setting output directory for new files (output directory must have a pypdf subdirectory)
     try:
         output_directory_path = sys.argv[3]
+        if output_directory_path[-1] != "/":
+            output_directory_path = output_directory_path + "/" #to handle output directories with or without trailing slash
     except:
         # proof of concept directory
         output_directory_path = 'output/'

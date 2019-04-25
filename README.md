@@ -47,7 +47,7 @@ Description of algorithm
 
 This script uses [PyPDF2](https://pythonhosted.org/PyPDF2/), an open-source library for reading and writing PDF files. The entire codebase is available in a [GitHub repository](https://github.com/mstamy2/PyPDF2).
 
-The use of PyPDF2 and some script features (particularly the bytestream extraction using an object attribute) were inspired by [an answer by sylvain to a Stack Overflow question](# https://stackoverflow.com/questions/2693820/extract-images-from-pdf-without-resampling-in-python).
+The use of PyPDF2 and some script features (particularly the bytestream extraction using an object attribute) were inspired by [an answer by sylvain to a Stack Overflow question](https://stackoverflow.com/questions/2693820/extract-images-from-pdf-without-resampling-in-python/34116472#34116472).
 
 #### Use
 
