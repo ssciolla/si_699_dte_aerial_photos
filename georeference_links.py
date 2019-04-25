@@ -53,9 +53,9 @@ def fetch_geocoding_data_with_caching(input_data, reverse=False):
             gis = GIS()
             HIT_API_YET = True
         if reverse == False:
-            data = geocode(input_string)
+            data = geocode(input_string) #geocode() argument is a string
         else:
-            data = reverse_geocode(input_string)
+            data = reverse_geocode(input_data) #reverse_geocode() argument is a list
         CACHE_DICTION[input_string] = data
         cache_file_open = open(ARCGIS_CACHE_FILE_NAME, "w")
         cache_file_open.write(json.dumps(CACHE_DICTION, indent=4))
@@ -74,6 +74,7 @@ def find_mid_left_point(link_coords):
     y_value = (y_two - y_one)/2 + y_one
     return (x_value, y_value)
 
+# Extract photo PDF metadata (photo identifier, PDF object number, PDF x and y coordinate) from batch_metadata, store in list of intermediary dictionaries 
 def create_new_link_records(batch_metadata):
     links = batch_metadata['Index Records'][0]['Links']
     link_location_dicts = []
@@ -92,25 +93,33 @@ def pull_lat_and_lon(geocoding_dict):
     longitude = geocoding_dict['location']['y']
     return latitude, longitude
 
+# Function to calculate coefficient and constant for coordinate conversion formula.
+# Takes as input dictionary with two street intersection information pairs (street address, PDF coordinates) pulled from address pair CSV file
 def find_constants_for_formulas(address_pair_dict):
+    #for each address, reverse geocode address to find real-world coordinaes
     address_one = address_pair_dict['Address 1']
     address_one_lat, address_one_lon = pull_lat_and_lon(fetch_geocoding_data_with_caching(address_one)[0])
     address_one_x = float(address_pair_dict['Address 1 GIMP X Coordinate'])
     address_one_y = float(address_pair_dict['Address 1 GIMP Y Coordinate'])
 
+    #repeat reverse geocoding to find real-world coordinates of second address
     address_two = address_pair_dict['Address 2']
     address_two_lat, address_two_lon = pull_lat_and_lon(fetch_geocoding_data_with_caching(address_two)[0])
     address_two_x = float(address_pair_dict['Address 2 GIMP X Coordinate'])
     address_two_y = float(address_pair_dict['Address 2 GIMP Y Coordinate'])
 
+    #use PDF coordinates and real-world coordinates to solve system of equations to find conversion formula for each dimension
     x_slope = (address_one_lat - address_two_lat) / (address_one_x - address_two_x)
     x_intercept = address_one_lat - (x_slope * address_one_x)
 
+    #repeat equaltion solving for y dimension
     y_slope = (address_one_lon - address_two_lon) / (address_one_y - address_two_y)
     y_intercept = address_one_lon - (y_slope * address_one_y)
+
+    #return equation coefficients and constants to use in converting link PDF coordinates to image real-world coordinates
     return (x_slope, x_intercept, y_slope, y_intercept)
 
-# Implements coordinate conversion formula
+# Implements coordinate conversion formula on a single value, taking target value and formula constants as input
 def convert_between_systems(value, slope, intercept):
     new_value = (slope * value) + intercept
     return new_value
@@ -121,6 +130,7 @@ def check_county_using_geocoordinates(coordinate_pair):
     county = data['address']['Subregion']
     return county
 
+# Calculates real-world coordinates of images using link records and address pair data
 def georeference_link_records(link_records, address_pair_dict):
     constants = find_constants_for_formulas(address_pair_dict)
     constant_dict = {
@@ -129,6 +139,8 @@ def georeference_link_records(link_records, address_pair_dict):
         'Y Slope': constants[2],
         'Y Intercept': constants[3]
     }
+
+    #calculate real-world coordinates, query ArcGIS API for county, return data
     georeferenced_link_records = []
     for link_record in link_records:
         georeferenced_link_record = link_record.copy()
@@ -139,27 +151,16 @@ def georeference_link_records(link_records, address_pair_dict):
         georeferenced_link_records.append(georeferenced_link_record)
     return georeferenced_link_records, constant_dict
 
-def create_link_coordinates_csv(link_dictionaries, index_file_name, output_location='output/'):
-    link_coordinates_file_name = index_file_name.replace('.pdf', '') + '_link_coordinates.csv'
-    link_coordinates_csv_file = open(output_location + link_coordinates_file_name, 'w', newline='', encoding='utf-8')
-    csvwriter = csv.writer(link_coordinates_csv_file)
-    headers = ['File Name', 'PDF X Coordinate', 'PDF Y Coordinate']
-    csvwriter.writerow(headers)
-    for link_dictionary in link_dictionaries:
-        csvwriter.writerow([
-            link_dictionary['Linked Image PDF Identifier'],
-            link_dictionary['PDF X Coordinate'],
-            link_dictionary['PDF Y Coordinate']
-        ])
-    link_coordinates_csv_file.close()
-
+# Performs georeferencing workflow on all extracted images from one county in one year (e.g. all Macomb 1961 images)
 def run_georeferencing_workflow(batch_metadata_file_path, output_name, output_location='output/'):
     print('\n** Link Georeferencing **')
 
-    # Load data from batch metadata and address pairs files
+    # Load data from batch metadata file
     batch_metadata_file = open(batch_metadata_file_path, 'r', encoding='utf-8')
     batch_metadata = json.loads(batch_metadata_file.read())
     batch_metadata_file.close()
+
+    # Load data from address pairs file
     address_pairs = misc_functions.load_csv_data(ADDRESS_PAIRS_FILE_PATH)
 
     index_file_name = batch_metadata['Index Records'][0]['Index File Name']
@@ -174,9 +175,10 @@ def run_georeferencing_workflow(batch_metadata_file_path, output_name, output_lo
     if pair_index == len(address_pairs):
         print('?? No address pair found for {} ??'.format(index_file_name))
 
-    # Create base link records and add georeferencing info
+    # Create link records to use in georeferencing
     link_records = create_new_link_records(batch_metadata)
-    # create_link_coordinates_csv(link_records, index_file_name)
+
+    # Store georeferencing data and metadata (address pair used, formula constants)
     georeferenced_link_records, constants = georeference_link_records(link_records, current_index_address_pair)
     georeferenced_link_data = {}
     georeferenced_link_data['Georeferencing Metadata'] = {
@@ -185,7 +187,7 @@ def run_georeferencing_workflow(batch_metadata_file_path, output_name, output_lo
     }
     georeferenced_link_data['Georeferenced Link Records'] = georeferenced_link_records
 
-    # Write data to file as plain JSON
+    # Write georeferencing data to file as JSON
     georeferenced_links_file = open(output_location + output_name, 'w', encoding='utf-8')
     georeferenced_links_file.write(json.dumps(georeferenced_link_data, indent=4))
     georeferenced_links_file.close()

@@ -29,7 +29,7 @@ There are two possible options for **mode**: "process" or "load". "process" will
 
 The value entered for **input path** should be a valid relative path from the current working directory to the target directory to process. If no value is entered for **input path** or **output path** (see below), the path used for the proof of concept ('input/pdf_files/part1/macomb/1961/') will be set.
 
-[output path]
+**output path**
 
 The value entered for **output path** should be a valid relative path from the current working directory to the target directory to process. If no value is entered for **output path** (see below), the path used for the proof of concept ('output/') will be set.
 
@@ -43,6 +43,10 @@ To correct these, the script user will need to manually investigate the mismatch
 
 Description of algorithm
 
+#### Use
+
+The script's Main Program runs the extraction workflow on the files in a test directory from the collection (input files are not provided).
+
 #### Inputs
 #### Outputs
 #### Dependencies
@@ -50,10 +54,6 @@ Description of algorithm
 This script uses [PyPDF2](https://pythonhosted.org/PyPDF2/), an open-source library for reading and writing PDF files. The entire codebase is available in a [GitHub repository](https://github.com/mstamy2/PyPDF2).
 
 The use of PyPDF2 and some script features (particularly the bytestream extraction using an object attribute) were inspired by [an answer by sylvain to a Stack Overflow question](https://stackoverflow.com/questions/2693820/extract-images-from-pdf-without-resampling-in-python/34116472#34116472).
-
-#### Use
-
-The script's Main Program runs the extraction workflow on the files in a test directory from the collection (input files are not provided).
 
 ### extract_using_poppler.py
 
@@ -64,13 +64,22 @@ Description of algorithm
 #### Outputs
 #### Dependencies
 
-### geolocate_links.py
+### georeference_links.py
 
 Description of algorithm
 
 #### Use
+
+The script's Main Program runs the georeferencing workflow on a user-defined batch metadata file to generate a sample JSON file.  The functions in this script are called by the primary workflow script, process_batch.py to georeference the images extracted by extract_using_pypdf.py.
+
 #### Inputs
+
+This script's primary function, run_georeferencing_workflow() takes as input the path to the metadata JSON file created by the run_pypdf2_workflow() function (also called by process_batch.py), the desired name of the output metadata file, and the path to the directory in which to create the output metadata file.
+
 #### Outputs
+
+This script's primary function, run_georeferencing_workflow() returns a data dictionary containing a) information used in the georeferncing process (two address pairs and the calculated conversion formula constants) and b) a dictionary for each image link in the index PDF containing its PDF object number, the image identifier it links to, the link's PDF coordinates, the image's calculated latitude and longitude, and the county the image is in.  The workflow function also writes this data to an output json file with name and location specified by the function's arguments.
+
 #### Dependencies
 
 [ArcGIS for Python Installation Guide](https://developers.arcgis.com/python/guide/install-and-set-up/)
