@@ -155,7 +155,7 @@ In order to determine and apply the appropriate linear transformation, the algor
 
 The PDF rendering coordinates can be found using GNU Image Manipulation Program (GIMP) or other image editing software such as Photoshop. After importing the index PDF into GIMP, the PDF coordinates for the intersection can be determined by hovering the cursor over the intersection and noting the coordinates listed at the bottom of the window.  However,in a PDF (0,0) is located at the bottom left hand corner, increasing in the up and right directions, and in GIMP (0,0) is located at the top left hand corner, increasing in the down and right directions, the image must be flipped vertically before reading the coordinates. Make sure these coordinates are displayed as points (pt) and not as pixels; PDF rendering is based on points and not pixels in order to preserve print output across systems.
 
-<img src="images/finding_pdf_coordinates_in_gimp.png" alt="Finding PDF rendering coordinates using GIMP software" width="500"/>
+<img src="static/finding_pdf_coordinates_in_gimp.png" alt="Finding PDF rendering coordinates using GIMP software" width="500"/>
 
 The script takes these intersections and queries the ArcGIS API to find their geographic coordinates.  It then uses the known equivalence of the geographic coordinates and PDF coordinates from the two intersections to calculate the linear transformation used to determine geographic coordinates of the index PDF links.
 
