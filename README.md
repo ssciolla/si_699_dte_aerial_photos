@@ -30,7 +30,7 @@ The value entered for `[output path]` should be a valid relative path from the c
 
 #### Inputs
 
-As `process_batch.py` also executes the workflows in `extract_using_pypdf.py` and `georeference_links.py`, it shares their inputs. See the descriptions below for details. While the workflow functions in those scripts write the data they collect to JSON files, they also return the data collected during them directly, making it unnecessary to load their inputs through file operations when using the `process` mode. With the `load` mode, the outputs from the two other workflow scripts are loaded: `batch_metadata.json` from the pypdf2 output subdirectory and `georefenced_links.json` and from the output directory; both file names prefixed with `[county]_[year]_`, where `[county]` and `[year]` are the names of the county and year referenced in the index file name.
+As `process_batch.py` also executes the workflows in `extract_using_pypdf.py` and `georeference_links.py`, it shares their inputs. See the descriptions below for details. While the workflow functions in those scripts write the data they collect to JSON files, they also return the data collected during them directly, making it unnecessary to load their inputs through file operations when using the `process` mode. With the `load` mode, the outputs from the two other workflow scripts are loaded: `batch_metadata.json` from the pypdf2 output subdirectory and `georefenced_links.json` and from the output directory; both file names prefixed with `[county]_[year]_`, where `[county]` and `[year]` are the names of the county and year referenced in the path to the directory.
 
 In addition, the script loads data from two csv files: `manual_pairs.csv` and `files_without_links.csv`. In testing the proof of concept, we discovered that the link metadata in the collection's index PDFs can be incorrect or incomplete. We encountered two main issues: 1) sometimes links would point to an incorrect file, leading to duplicate instances of file identifiers referenced in links and image files without any links referencing them; and 2) sometimes an image file would have no corresponding link because it was never embedded in the file, even though the identifier is displayed on the index map.
 
@@ -54,7 +54,7 @@ The name of the targeted directory's index file, including the file ending | The
 
 #### Outputs
 
-In addition to the outputs produced by the `extract_using_pypdf.py` and `georeference_links.py` workflows, the `process_batch.py` script produces a comprehensive metadata file containing image records called `dte_aerial_[county]_[year]_image_records.json`, where `[county]` and `[year]` are the names of the county and year referenced in the index file name.
+In addition to the outputs produced by the `extract_using_pypdf.py` and `georeference_links.py` workflows, the `process_batch.py` script produces a comprehensive metadata file containing image records called `dte_aerial_[county]_[year]_image_records.json`, where `[county]` and `[year]` are the names of the county and year referenced in the path to the directory.
 
 Each image record in the JSON file contains the file name of the new JPEG file name, as well as descriptive, technical, and preservation metadata gathered by the scripts. An example of the output is provided below.
 
@@ -101,6 +101,8 @@ This script presents one of two programmatic solutions to the task of extracting
 
 ![Extraction workflow](static/extraction_workflow.jpeg)
 
+<img src="static/extraction_workflow.jpeg" alt="extraction workflow diagram" width="250"/>
+
 #### Use
 
 To run the script, enter the following command at your command prompt of choice. If the script itself is run and not imported from `process_batch.py`, the program targets the directory specified in the Main Program for processing.
@@ -113,7 +115,7 @@ The files that serve as input for this script are the aerial photograph or image
 
 #### Outputs
 
-For each image PDF in the directory targeted for processing, the script will output a JPEG image with the same file identifier string, prefixed by `dte_aerial_`, to the output directory specified in the script or through input to a function. A batch metadata file will also be created called `[county]_[year]_batch_metadata.json`, where `[county]` and `[year]` are the names of the county and year referenced in the index file name.
+For each image PDF in the directory targeted for processing, the script will output a JPEG image with the same file identifier string, prefixed by `dte_aerial_`, to the output directory specified in the script or through input to a function. A batch metadata file will also be created called `[county]_[year]_batch_metadata.json`, where `[county]` and `[year]` are the names of the county and year referenced in the path to the directory.
 
 #### Dependencies
 
@@ -156,6 +158,8 @@ In order to determine and apply the appropriate linear transformation, the algor
 The PDF rendering coordinates can be found using GNU Image Manipulation Program (GIMP) or other image editing software such as Photoshop. After importing the index PDF into GIMP, the PDF coordinates for the intersection can be determined by hovering the cursor over the intersection and noting the coordinates listed at the bottom of the window.  However,in a PDF (0,0) is located at the bottom left hand corner, increasing in the up and right directions, and in GIMP (0,0) is located at the top left hand corner, increasing in the down and right directions, the image must be flipped vertically before reading the coordinates. Make sure these coordinates are displayed as points (pt) and not as pixels; PDF rendering is based on points and not pixels in order to preserve print output across systems.
 
 ![Finding PDF rendering coordinates using GIMP software](images/finding_pdf_coordinates_in_gimp.png)
+
+<img src="images/finding_pdf_coordinates_in_gimp.png" alt="Finding PDF rendering coordinates using GIMP software" width="250"/>
 
 The script takes these intersections and queries the ArcGIS API to find their geographic coordinates.  It then uses the known equivalence of the geographic coordinates and PDF coordinates from the two intersections to calculate the linear transformation used to determine geographic coordinates of the index PDF links.
 
