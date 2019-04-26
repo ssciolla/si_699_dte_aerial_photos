@@ -132,8 +132,14 @@ def find_link_record_with_id(id_num, link_records):
     return None
 
 # Take previous records, combine them, and accumulate a list of full records
-def match_and_combine_records(image_records, georeferenced_link_data, base_record, manual_pairs, files_without_links):
+def match_and_combine_records(batch_metadata, georeferenced_link_data, manual_pairs, files_without_links):
     print('\n** Image and Link Matching **')
+
+    #pull image records out of batch_metadata
+    image_records = batch_metadata['Image Records']
+
+    #create base descriptive metadata dictionary for values shared by all image files
+    base_record = create_base_record(batch_metadata)
 
     link_records = georeferenced_link_data['Georeferenced Link Records']
     constants = georeferenced_link_data['Georeferencing Metadata']['Constants']
@@ -244,11 +250,7 @@ if __name__=="__main__":
     county_year_combo = '_'.join(batch_directory_path.split('/')[-2:])
     batch_metadata, georeferenced_link_data = process_or_load(data_gathering_mode, batch_directory_path, output_directory_path, county_year_combo)
 
-    image_records = batch_metadata['Image Records']
     index_file_name = batch_metadata['Index Records'][0]['Index File Name']
-
-    # Creating base descriptive metadata dictionary for values shared by image files
-    base_record = create_base_record(batch_metadata)
 
     # Setting up manual pairs dictionary, with image identifiers as values and PDF object ID numbers as
     # their associated keys
@@ -267,7 +269,7 @@ if __name__=="__main__":
             files_without_links[file_without_link_dict['File Identifier']] = (file_without_link_dict['GIMP X Coordinate'], file_without_link_dict['GIMP Y Coordinate'])
 
     # Running matching algorithm
-    full_image_records, match_issues = match_and_combine_records(image_records, georeferenced_link_data, base_record, manual_pairs, files_without_links)
+    full_image_records, match_issues = match_and_combine_records(batch_metadata, georeferenced_link_data, manual_pairs, files_without_links)
 
     # Writing full records to output file
     full_image_records_file = open(output_directory_path + 'dte_aerial_{}_image_records.json'.format(county_year_combo), 'w', encoding='utf-8')
