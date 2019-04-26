@@ -99,7 +99,7 @@ Besides the dependencies passed on to it by extract_using_pypdf.py and georefere
 
 This script presents one of two programmatic solutions to the task of extracting JPEGs and document and link metadata from the collection's PDFs. Because it runs faster, is easier to setup, and gathers more technical metadata, we elected to integrate this script with `process_batch.py` over the extraction solution (`extract_using_poppler.py`, described below). The script makes of the third-party Python library PyPDF2 to process a target directory in the collection, handling PDFs with aerial photographs and the PDFs with index maps (there is typically only one of these) differently. Embedded JPEG bytestreams are isolated and written to new files, and metadata from both image and index PDFs are gathered and written to a JSON file. The general workflow of this script (and the `extract_using_poppler.py` script) is depicted in the diagram below.
 
-<img src="static/extraction_workflow.jpeg" alt="Extraction Workflow Diagram" width="300"/>
+<img src="static/extraction_workflow.jpeg" alt="Extraction Workflow Diagram" width="400"/>
 
 #### Use
 
@@ -122,7 +122,7 @@ This script uses [PyPDF2](https://pythonhosted.org/PyPDF2/), an open-source libr
 
 ### extract_using_poppler.py
 
-This script presents one of two programmatic solutions to the task of extracting JPEGs and document and link metadata from the collection's PDFs. The script makes of the third-party PDF rendering library Poppler to process a target directory in the collection, handling PDFs with aerial photographs and the PDFs with index maps (there is typically only one of these) differently. Embedded JPEG bytestreams are written to new files (using a command-line utility), and metadata from both image and index PDFs are gathered and written to a JSON file. The general workflow of this script is depicted in the diagram in the `extract_using_pypdf.py` section above.
+This script presents one of two programmatic solutions to the task of extracting JPEGs and document and link metadata from the collection's PDFs. The script employs the third-party PDF rendering library Poppler to process a target directory in the collection, handling PDFs of aerial photographs and the PDFs of index maps (there is typically only one of these) differently. Embedded JPEG bytestreams are written to new files (using a command-line utility), and metadata from both image and index PDFs are gathered and written to a JSON file. The general workflow of this script is depicted in the diagram in the `extract_using_pypdf.py` section above.
 
 #### Use
 
@@ -173,7 +173,7 @@ This script's primary function, `run_georeferencing_workflow()`, returns a dicti
 
 #### Dependencies
 
-This script uses the [https://developers.arcgis.com/python/](ArcGIS API for Python), which comes with a number of another dependencies (see `arcgis_requirements.txt`). An [installation guide](https://developers.arcgis.com/python/guide/install-and-set-up/) is available. In addition, a local library is referenced, the shared function file `misc_functions.py`. The `time`, `csv`, and `sys` standard Python libraries are also used.  
+This script uses the [ArcGIS API for Python](https://developers.arcgis.com/python/), which comes with a number of another dependencies (see `arcgis_requirements.txt`). An [installation guide](https://developers.arcgis.com/python/guide/install-and-set-up/) is available. In addition, a local library is referenced, the shared function file `misc_functions.py`. The `time`, `csv`, and `sys` standard Python libraries are also used.
 
 
 ## Script Use and Access
