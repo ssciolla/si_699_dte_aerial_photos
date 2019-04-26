@@ -9,7 +9,7 @@
 # os documentation: https://docs.python.org/3/library/os.html#module-os
 # subprocess documentation: https://docs.python.org/3/library/subprocess.html
 
-# Poppler requires a Linux operating system, or an equivalent setup.
+# This implementation of Poppler requires a Linux operating system, or an equivalent setup.
 # Poppler documentation: https://poppler.freedesktop.org/
 # PyGObject documentation: https://pygobject.readthedocs.io/en/latest/index.html
 # PyGObject and poppler API: https://lazka.github.io/pgi-docs/#Poppler-0.18
