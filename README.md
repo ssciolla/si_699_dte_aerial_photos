@@ -99,9 +99,7 @@ Besides the dependencies passed on to it by extract_using_pypdf.py and georefere
 
 This script presents one of two programmatic solutions to the task of extracting JPEGs and document and link metadata from the collection's PDFs. Because of it runs faster, is easier to setup, and gathers more technical metadata, we elected to integrate this script with `process_batch.py` over the extraction solution (`extract_using_poppler.py`, described below). The script makes of the third-party Python library PyPDF2 to process a target directory in the collection, handling PDFs with aerial photographs and the PDFs with index maps (there is typically only one of these) differently. Embedded JPEG bytestreams are isolated and written to new files, and metadata from both image and index PDFs are gathered and written to a JSON file. The general workflow of this script (and the `extract_using_poppler.py` script) is depicted in the diagram below.
 
-![Extraction workflow](static/extraction_workflow.jpeg)
-
-<img src="static/extraction_workflow.jpeg" alt="extraction workflow diagram" width="250"/>
+<img src="static/extraction_workflow.jpeg" alt="Extraction Workflow Diagram" width="500"/>
 
 #### Use
 
@@ -157,9 +155,7 @@ In order to determine and apply the appropriate linear transformation, the algor
 
 The PDF rendering coordinates can be found using GNU Image Manipulation Program (GIMP) or other image editing software such as Photoshop. After importing the index PDF into GIMP, the PDF coordinates for the intersection can be determined by hovering the cursor over the intersection and noting the coordinates listed at the bottom of the window.  However,in a PDF (0,0) is located at the bottom left hand corner, increasing in the up and right directions, and in GIMP (0,0) is located at the top left hand corner, increasing in the down and right directions, the image must be flipped vertically before reading the coordinates. Make sure these coordinates are displayed as points (pt) and not as pixels; PDF rendering is based on points and not pixels in order to preserve print output across systems.
 
-![Finding PDF rendering coordinates using GIMP software](images/finding_pdf_coordinates_in_gimp.png)
-
-<img src="images/finding_pdf_coordinates_in_gimp.png" alt="Finding PDF rendering coordinates using GIMP software" width="250"/>
+<img src="images/finding_pdf_coordinates_in_gimp.png" alt="Finding PDF rendering coordinates using GIMP software" width="500"/>
 
 The script takes these intersections and queries the ArcGIS API to find their geographic coordinates.  It then uses the known equivalence of the geographic coordinates and PDF coordinates from the two intersections to calculate the linear transformation used to determine geographic coordinates of the index PDF links.
 
