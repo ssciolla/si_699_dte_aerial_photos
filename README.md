@@ -120,7 +120,19 @@ Description of algorithm
 
 ### georeference_links.py
 
-Description of algorithm
+The algorithm in this workflow uses the PDF rendering coordinates for the links in the index map PDF to determine real-world geographic coordinates for the images represented by those links.  Using ArcGIS Desktop, we visually determined that the maps in the index PDFs use the Michigan State Plane coordinate system and are correctly oriented.  Due to Cartesian nature of the State Plane system and its local accuracy, we are able to use a linear transformation on the PDF rendering coordinates to calculate approximate geographic coordinates for the images.
+
+In order to determine and apply the appropriate linear transformation, the algorithm uses the non-argument input of a CSV file called address_pairs.csv.  This file needs to contain information about two different points on the index map (any two different street intersections are fine).  The CSV contains one row for each different index PDF, with the following columns (with explanation below each):
+
+| Index File Name | Address 1 | Address 1 GIMP X Coordinate | Address 1 GIMP Y Coordinate | Address 2 | Address 2 GIMP X Coordinate | Address 2 GIMP Y Coordinate
+| --- | --- | --- | --- | --- | --- | --- |
+| The name of the index PDF described | A single string describing intersection #2 (e.g. "Bordman Road and Fisher Road, Bruce Township, MI 48065") | The PDF rendering x coordinate for intesection #1 | The PDF rendering y coordinate of intersection #1 | A single string describing intersection #2 | THe PDF rendering x coordinate of intersection #2 | The PDF rendering y coordinate of intersection #2 |
+
+The PDF rendering coordinates can be found using GNU Image Manipulation Program (GIMP) or other image editing software such as Photoshop.  After importing the index PDF into GIMP, the PDF coordinates for the intersection can be determined by hovering the cursor over the intersection and noting the coordinates listed at the bottom of the window.  However,in a PDF (0,0) is located at the bottom left hand corner, increasing in the up and right directions, and in GIMP (0,0) is located at the top left hand corner, increasing in the down and right directions, the image must be flipped vertically before reading the coordinates.  Make sure these coordinates are displayed as points (pt) and not as pixels; PDF rendering is based on points and not pixels in order to preserve print output across systems.
+
+![Finding PDF rendering coordinates using GIMP software](images/finding_pdf_coordinates_in_gimp.png)
+
+The script takes these intersections and queries the ArcGIS API to find their geographic coordinates.  It then uses the known equivalence of the geographic coordinates and PDF coordinates from the two intersections to calculate the linear transformation used to determine geographic coordinates of the index PDF links.
 
 #### Use
 
@@ -128,11 +140,11 @@ The script's Main Program runs the georeferencing workflow on a user-defined bat
 
 #### Inputs
 
-This script's primary function, run_georeferencing_workflow() takes as input the path to the metadata JSON file created by the run_pypdf2_workflow() function (also called by process_batch.py), the desired name of the output metadata file, and the path to the directory in which to create the output metadata file.
+This script's primary function, `run_georeferencing_workflow()` takes as input the path to the metadata JSON file created by the `run_pypdf2_workflow()` function (also called by process_batch.py), the desired name of the output metadata file, and the path to the directory in which to create the output metadata file.  In order to run the workflow also requires a CSV called address_pairs.csv (described above) in the input folder.
 
 #### Outputs
 
-This script's primary function, run_georeferencing_workflow() returns a data dictionary containing a) information used in the georeferncing process (two address pairs and the calculated conversion formula constants) and b) a dictionary for each image link in the index PDF containing its PDF object number, the image identifier it links to, the link's PDF coordinates, the image's calculated latitude and longitude, and the county the image is in.  The workflow function also writes this data to an output json file with name and location specified by the function's arguments.
+This script's primary function, `run_georeferencing_workflow()`, returns a data dictionary containing a) information used in the georeferncing process (two address pairs and the calculated conversion formula constants) and b) a dictionary for each image link in the index PDF containing its PDF object number, the image identifier it links to, the link's PDF coordinates, the image's calculated latitude and longitude, and the county the image is in.  The workflow function also writes this data to an output json file with name and location specified by the function's arguments.
 
 #### Dependencies
 
