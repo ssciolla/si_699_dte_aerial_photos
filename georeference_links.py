@@ -36,9 +36,10 @@ except:
     CACHE_DICTION = {}
 
 # Function either geocodes (converts street address to coordinates) or reverse geocodes (converts coordinates to street address).
-# When reverse=false, input_data should be single-line address (string) that is used to query a set of coordinates.
-# When reverse=true, input_data should be a latitude longitude pair (tuple or list) that is used to look up a street address (used here to find county name).
+# When reverse == False, input_data should be a single-line address (string) that is used to query a set of coordinates.
+# When reverse == True, input_data should be a longitude latitude pair (tuple or list) that is used to look up a street address (used here to find county name).
 def fetch_geocoding_data_with_caching(input_data, reverse=False):
+    print(input_data)
     global HIT_API_YET
     if reverse == True:
         input_string = str(input_data[0]) + ', ' + str(input_data[1]) #convert lat-lon pair into string for ArcGIS API
@@ -74,7 +75,7 @@ def find_mid_left_point(link_coords):
     y_value = (y_two - y_one)/2 + y_one
     return (x_value, y_value)
 
-# Extract photo PDF metadata (photo identifier, PDF object number, PDF x and y coordinate) from batch_metadata, store in list of intermediary dictionaries 
+# Extract photo PDF metadata (photo identifier, PDF object number, PDF x and y coordinates) from batch_metadata, store in list of intermediary dictionaries
 def create_new_link_records(batch_metadata):
     links = batch_metadata['Index Records'][0]['Links']
     link_location_dicts = []
@@ -89,34 +90,34 @@ def create_new_link_records(batch_metadata):
     return link_location_dicts
 
 def pull_lat_and_lon(geocoding_dict):
-    latitude = geocoding_dict['location']['x']
-    longitude = geocoding_dict['location']['y']
-    return latitude, longitude
+    longitude = geocoding_dict['location']['x']
+    latitude = geocoding_dict['location']['y']
+    return longitude, latitude
 
 # Function to calculate coefficient and constant for coordinate conversion formula.
 # Takes as input dictionary with two street intersection information pairs (street address, PDF coordinates) pulled from address pair CSV file
 def find_constants_for_formulas(address_pair_dict):
-    #for each address, reverse geocode address to find real-world coordinaes
+    # for each address, reverse geocode address to find real-world coordinaes
     address_one = address_pair_dict['Address 1']
-    address_one_lat, address_one_lon = pull_lat_and_lon(fetch_geocoding_data_with_caching(address_one)[0])
+    address_one_lon, address_one_lat = pull_lat_and_lon(fetch_geocoding_data_with_caching(address_one)[0])
     address_one_x = float(address_pair_dict['Address 1 GIMP X Coordinate'])
     address_one_y = float(address_pair_dict['Address 1 GIMP Y Coordinate'])
 
-    #repeat reverse geocoding to find real-world coordinates of second address
+    # repeat reverse geocoding to find real-world coordinates of second address
     address_two = address_pair_dict['Address 2']
-    address_two_lat, address_two_lon = pull_lat_and_lon(fetch_geocoding_data_with_caching(address_two)[0])
+    address_two_lon, address_two_lat = pull_lat_and_lon(fetch_geocoding_data_with_caching(address_two)[0])
     address_two_x = float(address_pair_dict['Address 2 GIMP X Coordinate'])
     address_two_y = float(address_pair_dict['Address 2 GIMP Y Coordinate'])
 
-    #use PDF coordinates and real-world coordinates to solve system of equations to find conversion formula for each dimension
-    x_slope = (address_one_lat - address_two_lat) / (address_one_x - address_two_x)
-    x_intercept = address_one_lat - (x_slope * address_one_x)
+    # use PDF coordinates and real-world coordinates to solve system of equations to find conversion formula for each dimension
+    x_slope = (address_one_lon - address_two_lon) / (address_one_x - address_two_x)
+    x_intercept = address_one_lon - (x_slope * address_one_x)
 
-    #repeat equaltion solving for y dimension
-    y_slope = (address_one_lon - address_two_lon) / (address_one_y - address_two_y)
-    y_intercept = address_one_lon - (y_slope * address_one_y)
+    # repeat equaltion solving for y dimension
+    y_slope = (address_one_lat - address_two_lat) / (address_one_y - address_two_y)
+    y_intercept = address_one_lat - (y_slope * address_one_y)
 
-    #return equation coefficients and constants to use in converting link PDF coordinates to image real-world coordinates
+    # return equation coefficients and constants to use in converting link PDF coordinates to image real-world coordinates
     return (x_slope, x_intercept, y_slope, y_intercept)
 
 # Implements coordinate conversion formula on a single value, taking target value and formula constants as input
@@ -140,18 +141,18 @@ def georeference_link_records(link_records, address_pair_dict):
         'Y Intercept': constants[3]
     }
 
-    #calculate real-world coordinates, query ArcGIS API for county, return data
+    # calculate real-world coordinates, query ArcGIS API for county, return data
     georeferenced_link_records = []
     for link_record in link_records:
         georeferenced_link_record = link_record.copy()
-        georeferenced_link_record['Latitude'] = convert_between_systems(georeferenced_link_record['PDF X Coordinate'], constant_dict['X Slope'], constant_dict['X Intercept'])
-        georeferenced_link_record['Longitude'] = convert_between_systems(georeferenced_link_record['PDF Y Coordinate'], constant_dict['Y Slope'], constant_dict['Y Intercept'])
-        coordinate_pair = [georeferenced_link_record['Latitude'], georeferenced_link_record['Longitude']]
+        georeferenced_link_record['Longitude'] = convert_between_systems(georeferenced_link_record['PDF X Coordinate'], constant_dict['X Slope'], constant_dict['X Intercept'])
+        georeferenced_link_record['Latitude'] = convert_between_systems(georeferenced_link_record['PDF Y Coordinate'], constant_dict['Y Slope'], constant_dict['Y Intercept'])
+        coordinate_pair = [georeferenced_link_record['Longitude'], georeferenced_link_record['Latitude']]
         georeferenced_link_record['Current County'] = check_county_using_geocoordinates(coordinate_pair)
         georeferenced_link_records.append(georeferenced_link_record)
     return georeferenced_link_records, constant_dict
 
-# Performs georeferencing workflow on all extracted images from one county in one year (e.g. all Macomb 1961 images)
+# Performs georeferencing workflow on all extracted links from one county index in one year (e.g. all Macomb 1961 images)
 def run_georeferencing_workflow(batch_metadata_file_path, output_name, output_location='output/'):
     print('\n** Link Georeferencing **')
 

@@ -27,11 +27,11 @@ FILES_WITHOUT_LINKS = 'files_without_links.csv'
 # Arguments: PDF coordinate pair (pair or list) and dictionary of formula coefficients (dictionary). Returns: dictionary with real-world coordinates (dictionary) and name of county (string)
 def collect_arcgis_info_for_coordinate_pair(xy_pair, constants):
     geocoordinates = {}
-    latitude = georeference_links.convert_between_systems(float(xy_pair[0]), constants['X Slope'], constants['X Intercept'])
-    longitude = georeference_links.convert_between_systems(float(xy_pair[1]), constants['Y Slope'], constants['Y Intercept'])
-    geocoordinates['Latitude'] = latitude
+    longitude = georeference_links.convert_between_systems(float(xy_pair[0]), constants['X Slope'], constants['X Intercept'])
+    latitude = georeference_links.convert_between_systems(float(xy_pair[1]), constants['Y Slope'], constants['Y Intercept'])
     geocoordinates['Longitude'] = longitude
-    current_county = georeference_links.check_county_using_geocoordinates([latitude, longitude])
+    geocoordinates['Latitude'] = latitude
+    current_county = georeference_links.check_county_using_geocoordinates([longitude, latitude])
     return geocoordinates, current_county
 
 # Use image, index and link metadata to create full records for each image file
@@ -45,8 +45,8 @@ def create_full_record(base_record, image_record, location_input, match_mode='id
         georeferenced_link_record = location_input
         full_image_record['Descriptive']['ArcGIS Current County'] = georeferenced_link_record['Current County']
         full_image_record['Descriptive']['ArcGIS Geocoordinates'] = {
-            'Latitude': georeferenced_link_record['Latitude'],
-            'Longitude': georeferenced_link_record['Longitude']
+            'Longitude': georeferenced_link_record['Longitude'],
+            'Latitude': georeferenced_link_record['Latitude']
         }
     elif match_mode == 'visual':
         geocoordinates, current_county = location_input
@@ -112,7 +112,7 @@ def crosswalk_to_geojson(records):
         geojson_dict['type'] = 'Feature'
         geojson_dict['geometry'] = {}
         geojson_dict['geometry']['type'] = 'Point'
-        geojson_dict['geometry']['coordinates'] = [geocoordinates['Latitude'], geocoordinates['Longitude']]
+        geojson_dict['geometry']['coordinates'] = [geocoordinates['Longitude'], geocoordinates['Latitude']]
         geojson_dict['properties'] = {
             'file_identifier': descriptive_metadata['File Identifier'],
             'county': descriptive_metadata['ArcGIS Current County'],
@@ -135,10 +135,10 @@ def find_link_record_with_id(id_num, link_records):
 def match_and_combine_records(batch_metadata, georeferenced_link_data, manual_pairs, files_without_links):
     print('\n** Image and Link Matching **')
 
-    #pull image records out of batch_metadata
+    # pull image records out of batch_metadata
     image_records = batch_metadata['Image Records']
 
-    #create base descriptive metadata dictionary for values shared by all image files
+    # create base descriptive metadata dictionary for values shared by all image files
     base_record = create_base_record(batch_metadata)
 
     link_records = georeferenced_link_data['Georeferenced Link Records']

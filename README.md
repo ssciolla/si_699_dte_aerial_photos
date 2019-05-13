@@ -66,8 +66,8 @@ Each image record in the JSON file contains the file name of the new JPEG file n
         "File Identifier": "fm-11-100",
         "ArcGIS Current County": "Macomb County",
         "ArcGIS Geocoordinates": {
-            "Latitude": -82.74493365978033,
-            "Longitude": 42.77413107704377
+            "Longitude": -82.74493365978033,
+            "Latitude": 42.77413107704377
         }
     },
     "Technical": {
@@ -84,7 +84,7 @@ Each image record in the JSON file contains the file name of the new JPEG file n
             "Link PDF Object ID Number": 631
         },
         "PDF Source Relative Path": "input\\pdf_files\\part1\\macomb\\1961\\fm-11-100.pdf",
-        "Date and Time Created": "2019-4-21-15:21"
+        "Date and Time Created": "2019-5-13-14:17"
     },
     "File Name": "dte_aerial_fm-11-100.jpg"
 }
@@ -169,7 +169,7 @@ This script's primary function, `run_georeferencing_workflow()` takes as input t
 
 #### Outputs
 
-This script's primary function, `run_georeferencing_workflow()`, returns a data dictionary containing a) information used in the georeferncing process (two address pairs and the calculated conversion formula constants) and b) a dictionary for each image link in the index PDF containing its PDF object number, the image identifier it links to, the link's PDF coordinates, the image's calculated latitude and longitude, and the county the image is in.  The workflow function also writes this data to an output json file with name and location specified by the function's arguments.
+This script's primary function, `run_georeferencing_workflow()`, returns a data dictionary containing a) information used in the georeferncing process (two address pairs and the calculated conversion formula constants) and b) a dictionary for each image link in the index PDF containing its PDF object number, the image identifier it links to, the link's PDF coordinates, the image's calculated longitude and latitude, and the county the image is in. The workflow function also writes this data to an output JSON file with name and location specified by the function's arguments.
 
 #### Dependencies
 

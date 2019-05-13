@@ -14408,5 +14408,37 @@
                 "latestWkid": 4326
             }
         }
+    },
+    "-82.84890247594143, 42.6580993952172": {
+        "address": {
+            "Match_addr": "48051, New Baltimore, Michigan",
+            "LongLabel": "48051, New Baltimore, MI, USA",
+            "ShortLabel": "48051",
+            "Addr_type": "Postal",
+            "Type": "",
+            "PlaceName": "48051",
+            "AddNum": "",
+            "Address": "",
+            "Block": "",
+            "Sector": "",
+            "Neighborhood": "",
+            "District": "",
+            "City": "New Baltimore",
+            "MetroArea": "",
+            "Subregion": "Macomb County",
+            "Region": "Michigan",
+            "Territory": "",
+            "Postal": "48051",
+            "PostalExt": "",
+            "CountryCode": "USA"
+        },
+        "location": {
+            "x": -82.84890247594143,
+            "y": 42.6580993952172,
+            "spatialReference": {
+                "wkid": 4326,
+                "latestWkid": 4326
+            }
+        }
     }
 }
