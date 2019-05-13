@@ -24,9 +24,9 @@ To run the script, enter the following command at your command prompt of choice.
 
 There are two possible options for `[mode]`: `process` or `load`. `process` will run start fresh executions of the extraction and georeferencing workflows. `load` will instead open the metadata files produced by the last `process` run.
 
-The value entered for `[input path]` should be a valid relative path from the current working directory to the target directory to process. If no value is entered for `input path` or `output path` (see below), the path used for the proof of concept ('input/pdf_files/part1/macomb/1961/') will be set.
+The value entered for `[input path]` should be a valid relative path from the current working directory to the target directory to process. If no value is entered for `[input path]` or `[output path]` (see below), the path used for the proof of concept ( 'input/pdf_files/part1/macomb/1961/' ) will be set.
 
-The value entered for `[output path]` should be a valid relative path from the current working directory to the target directory to process. If no value is entered for `output path`, the path used for the proof of concept ('output/') will be set.
+The value entered for `[output path]` should be a valid relative path from the current working directory to the target directory to process. If no value is entered, the path used for the proof of concept ( 'output/' ) will be set.
 
 #### Inputs
 
@@ -41,7 +41,7 @@ To help resolve these issues, we built tests into the script that check for anom
 To fix the incorrect linking reported by the script, the user will need to visually inspect the index PDF and determine the PDF coordinates of apparent link locations, which we recommend doing using the open source imaging edit tool [GIMP](https://www.gimp.org/) (a process described below). Using the coordinates and comparing them with those of the link records listed in the JSON document `[county]_[year] georeferenced_links.json`, the correct pairs of images and links (identified by the PDF Object ID Numbers) pairs can be determined. These matches can then be added in new rows to the `manual_pairs.csv` document, which must be encoded in UTF-8. The CSV file should have the following headers and values:
 
 Index File Name	| Image Identifier | PDF Object ID Number
-----------------|------------------|-------------------------
+---|---|---
 The name of the targeted directory's index file, including the file ending | The string used in the image file name, a combination of letters, dashes, and numbers |  The internal numeric identifier for the PDF link object, included in the output of `extract_using_pypdf.py` and `georeference_links.py`
 
 `files_without_links.csv`
@@ -49,7 +49,7 @@ The name of the targeted directory's index file, including the file ending | The
 In cases where an image has no corresponding link record but its identifier appears in the index PDF, the locational details can be added to the image record by specifying the PDF coordinates, determined using GIMP, using `files_without_link.csv`. Once the script has the PDF coordinates, it converts them using functions from `georeference_links.py` to geocoordinates. The CSV file should have the following headers and values:
 
 Index File Name	| File Identifier	| GIMP X Coordinate	| GIMP Y Coordinate
-----------------|-----------------|-------------------|------------------
+---|---|---|---
 The name of the targeted directory's index file, including the file ending | The string used in the image file name, a combination of letters, dashes, and numbers | The X value to be converted to a latitude | The Y value to be converted to a longitude
 
 #### Outputs
@@ -97,9 +97,9 @@ Besides the dependencies passed on to it by extract_using_pypdf.py and georefere
 
 ### extract_using_pypdf.py
 
-This script presents one of two programmatic solutions to the task of extracting JPEGs and document and link metadata from the collection's PDFs. Because of it runs faster, is easier to setup, and gathers more technical metadata, we elected to integrate this script with `process_batch.py` over the extraction solution (`extract_using_poppler.py`, described below). The script makes of the third-party Python library PyPDF2 to process a target directory in the collection, handling PDFs with aerial photographs and the PDFs with index maps (there is typically only one of these) differently. Embedded JPEG bytestreams are isolated and written to new files, and metadata from both image and index PDFs are gathered and written to a JSON file. The general workflow of this script (and the `extract_using_poppler.py` script) is depicted in the diagram below.
+This script presents one of two programmatic solutions to the task of extracting JPEGs and document and link metadata from the collection's PDFs. Because it runs faster, is easier to setup, and gathers more technical metadata, we elected to integrate this script with `process_batch.py` over the extraction solution (`extract_using_poppler.py`, described below). The script makes of the third-party Python library PyPDF2 to process a target directory in the collection, handling PDFs with aerial photographs and the PDFs with index maps (there is typically only one of these) differently. Embedded JPEG bytestreams are isolated and written to new files, and metadata from both image and index PDFs are gathered and written to a JSON file. The general workflow of this script (and the `extract_using_poppler.py` script) is depicted in the diagram below.
 
-<img src="static/extraction_workflow.jpeg" alt="Extraction Workflow Diagram" width="500"/>
+<img src="static/extraction_workflow.jpeg" alt="Extraction Workflow Diagram" width="400"/>
 
 #### Use
 
@@ -122,7 +122,7 @@ This script uses [PyPDF2](https://pythonhosted.org/PyPDF2/), an open-source libr
 
 ### extract_using_poppler.py
 
-This script presents one of two programmatic solutions to the task of extracting JPEGs and document and link metadata from the collection's PDFs. The script makes of the third-party PDF rendering library Poppler to process a target directory in the collection, handling PDFs with aerial photographs and the PDFs with index maps (there is typically only one of these) differently. Embedded JPEG bytestreams are written to new files (using a command-line utility), and metadata from both image and index PDFs are gathered and written to a JSON file. The general workflow of this script is depicted in the diagram in the `extract_using_pypdf.py` section above.
+This script presents one of two programmatic solutions to the task of extracting JPEGs and document and link metadata from the collection's PDFs. The script employs the third-party PDF rendering library Poppler to process a target directory in the collection, handling PDFs of aerial photographs and the PDFs of index maps (there is typically only one of these) differently. Embedded JPEG bytestreams are written to new files (using a command-line utility), and metadata from both image and index PDFs are gathered and written to a JSON file. The general workflow of this script is depicted in the diagram in the `extract_using_pypdf.py` section above.
 
 #### Use
 
@@ -140,41 +140,42 @@ For each image PDF in the directory targeted for processing, the script will out
 
 #### Dependencies
 
-`extract_using_poppler.py` makes use of another open source PDF rendering library and set of command line utilities called [Poppler](https://poppler.freedesktop.org/). We wrote this script to run on a Linux operating system, as that way Poppler is easier to access. Working with the codebase through Python required the use of an intermediary API, [PyGObject](https://pygobject.readthedocs.io/en/latest/index.html). The [Poppler-specific PyGObject documentation](https://lazka.github.io/pgi-docs/#Poppler-0.18) proved useful in writing this script. In addition, local libraries referenced include the shared function file, `misc_functions.py`. The `time`, `json` and `subprocess` standard Python libraries are also used. The `subprocess` module is used to run one of the Poppler command-line utilities, `pdfimages`.
+`extract_using_poppler.py` makes use of another open source PDF rendering library and set of command line utilities called [Poppler](https://poppler.freedesktop.org/). We wrote this script to run on a Linux operating system, as that way Poppler is easier to access. Working with the codebase through Python required the use of an intermediary API, [PyGObject](https://pygobject.readthedocs.io/en/latest/index.html). The [Poppler-specific PyGObject documentation](https://lazka.github.io/pgi-docs/#Poppler-0.18) proved useful in writing this script. In addition, a local library is referenced, the shared function file `misc_functions.py`. The `time`, `json` and `subprocess` standard Python libraries are also used. The `subprocess` module is used to run one of the Poppler command-line utilities, `pdfimages`.
 
 
 ### georeference_links.py
 
-The algorithm in this workflow uses the PDF rendering coordinates for the links in the index map PDF to determine real-world geographic coordinates for the images represented by those links.  Using ArcGIS Desktop, we visually determined that the maps in the index PDFs use the Michigan State Plane coordinate system and are correctly oriented.  Due to Cartesian nature of the State Plane system and its local accuracy, we are able to use a linear transformation on the PDF rendering coordinates to calculate approximate geographic coordinates for the images.
+The algorithm in this workflow uses the PDF rendering coordinates for the links in the index map PDF to determine real-world geographic coordinates for the images represented by those links. Using ArcGIS Desktop, we visually determined that the maps in the index PDFs use the Michigan State Plane coordinate system and are correctly oriented. Due to Cartesian nature of the State Plane system and its local accuracy, we are able to use a linear transformation on the PDF rendering coordinates to calculate approximate geographic coordinates for the images.
 
-In order to determine and apply the appropriate linear transformation, the algorithm uses the non-argument input of a CSV file called address_pairs.csv.  This file needs to contain information about two different points on the index map (any two different street intersections are fine).  The CSV contains one row for each different index PDF, with the following columns (with explanation below each):
+In order to determine and apply the appropriate linear transformation, the algorithm uses the non-argument input of a CSV file called `address_pairs.csv`. This file needs to contain information about two different points on the index map (any two different street intersections are fine). The CSV contains one row for each different index PDF, with the following columns (with explanation below each):
 
-| Index File Name | Address 1 | Address 1 GIMP X Coordinate | Address 1 GIMP Y Coordinate | Address 2 | Address 2 GIMP X Coordinate | Address 2 GIMP Y Coordinate
-| --- | --- | --- | --- | --- | --- | --- |
-| The name of the index PDF described | A single string describing intersection #2 (e.g. "Bordman Road and Fisher Road, Bruce Township, MI 48065") | The PDF rendering x coordinate for intesection #1 | The PDF rendering y coordinate of intersection #1 | A single string describing intersection #2 | The PDF rendering x coordinate of intersection #2 | The PDF rendering y coordinate of intersection #2 |
+Index File Name | Address 1 | Address 1 GIMP X Coordinate | Address 1 GIMP Y Coordinate | Address 2 | Address 2 GIMP X Coordinate | Address 2 GIMP Y Coordinate
+---|---|---|---|---|---|---
+The name of the index PDF described | A single string describing intersection #2 (e.g. "Bordman Road and Fisher Road, Bruce Township, MI 48065") | The PDF rendering x coordinate for intesection #1 | The PDF rendering y coordinate of intersection #1 | A single string describing intersection #2 | The PDF rendering x coordinate of intersection #2 | The PDF rendering y coordinate of intersection #2
 
-The PDF rendering coordinates can be found using GNU Image Manipulation Program (GIMP) or other image editing software such as Photoshop. After importing the index PDF into GIMP, the PDF coordinates for the intersection can be determined by hovering the cursor over the intersection and noting the coordinates listed at the bottom of the window.  However,in a PDF (0,0) is located at the bottom left hand corner, increasing in the up and right directions, and in GIMP (0,0) is located at the top left hand corner, increasing in the down and right directions, the image must be flipped vertically before reading the coordinates. Make sure these coordinates are displayed as points (pt) and not as pixels; PDF rendering is based on points and not pixels in order to preserve print output across systems.
+The PDF rendering coordinates can be found using GNU Image Manipulation Program (GIMP) or other image editing software such as Photoshop. After importing the index PDF into GIMP, the PDF coordinates for the intersection can be determined by hovering the cursor over the intersection and noting the coordinates listed at the bottom of the window. However, in a PDF (0,0) is located at the bottom left hand corner, increasing in the up and right directions, and in GIMP (0,0) is located at the top left hand corner, increasing in the down and right directions, the image must be flipped vertically before reading the coordinates. Make sure these coordinates are displayed as points (pt) and not as pixels; PDF rendering is based on points and not pixels in order to preserve print output across systems.
 
 <img src="static/finding_pdf_coordinates_in_gimp.png" alt="Finding PDF rendering coordinates using GIMP software" width="500"/>
 
-The script takes these intersections and queries the ArcGIS API to find their geographic coordinates.  It then uses the known equivalence of the geographic coordinates and PDF coordinates from the two intersections to calculate the linear transformation used to determine geographic coordinates of the index PDF links.
+The script takes these intersections and queries the ArcGIS API to find their geographic coordinates. It then uses the known equivalence of the geographic coordinates and PDF coordinates from the two intersections to calculate the linear transformation used to determine geographic coordinates of the index PDF links.
 
 #### Use
 
-The script's Main Program runs the georeferencing workflow on a user-defined batch metadata file to generate a sample JSON file. The functions in this script are called by the primary workflow script, process_batch.py to georeference the images extracted by extract_using_pypdf.py.
+The script's Main Program runs the georeferencing workflow on a user-defined batch metadata file to generate a sample JSON file. The functions in this script are called by the primary workflow script, `process_batch.py` to georeference the images extracted by `extract_using_pypdf.py`.
 
 #### Inputs
 
-This script's primary function, `run_georeferencing_workflow()` takes as input the path to the metadata JSON file created by the `run_pypdf2_workflow()` function (also called by process_batch.py), the desired name of the output metadata file, and the path to the directory in which to create the output metadata file.  In order to run the workflow also requires a CSV called address_pairs.csv (described above) in the input folder.
+This script's primary function, `run_georeferencing_workflow()` takes as input the path to the metadata JSON file created by the `run_pypdf2_workflow()` function (also called by `process_batch.py`), the desired name of the output metadata file, and the path to the directory in which to create the output metadata file. In order to run the workflow also requires a CSV called `address_pairs.csv` (described above) in the input folder.
 
 #### Outputs
 
-This script's primary function, `run_georeferencing_workflow()`, returns a data dictionary containing a) information used in the georeferncing process (two address pairs and the calculated conversion formula constants) and b) a dictionary for each image link in the index PDF containing its PDF object number, the image identifier it links to, the link's PDF coordinates, the image's calculated longitude and latitude, and the county the image is in. The workflow function also writes this data to an output JSON file with name and location specified by the function's arguments.
+This script's primary function, `run_georeferencing_workflow()`, returns a data dictionary containing a) information used in the georeferencing process (two address pairs and the calculated conversion formula constants) and b) a dictionary for each image link in the index PDF containing its PDF object number, the image identifier it links to, the link's PDF coordinates, the image's calculated longitude and latitude, and the county the image is in. The workflow function also writes this data to an output JSON file with name and location specified by the function's arguments.
 
 #### Dependencies
 
-[ArcGIS for Python Installation Guide](https://developers.arcgis.com/python/guide/install-and-set-up/)
+This script uses the [ArcGIS API for Python](https://developers.arcgis.com/python/), which comes with a number of another dependencies (see `arcgis_requirements.txt`). An [installation guide](https://developers.arcgis.com/python/guide/install-and-set-up/) is available. In addition, a local library is referenced, the shared function file `misc_functions.py`. The `time`, `csv`, and `sys` standard Python libraries are also used.
+
 
 ## Script Use and Access
 
-Feel free to re-use or modify any of these scripts. Attribution and linking back to the repository would be appreciated.
+This project is licensed under the terms of the MIT license. Attribution and linking back to the repository would be appreciated.
