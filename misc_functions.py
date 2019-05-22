@@ -38,8 +38,9 @@ def collect_relative_paths_for_files(target_directory_path):
 	os.chdir(root_directory)
 	return pdf_file_paths
 
-# Check if output directory has correct subdirectory; adds subdirectory if does not already exit. Argument: relative path (string), name of subdirectory to check for. Returns nothing.
-def output_subdirectory(output_dir_path="output/", output_subdir_name="pypdf"):
+# Check if output directory has correct subdirectory; adds subdirectory if does not already exit.
+#  Argument: relative path (string), name of subdirectory to check for. Returns: nothing.
+def set_up_output_subdirectory(output_dir_path="output/", output_subdir_name="pypdf"):
     make_subdir = True
     with os.scandir(output_dir_path) as dir_objects:
         for entry in dir_objects:

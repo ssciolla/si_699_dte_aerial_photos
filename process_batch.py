@@ -16,7 +16,7 @@ import extract_using_pypdf
 import georeference_links
 import misc_functions
 
-# Global variable
+# global variables
 MANUAL_PAIRS_FILENAME = 'manual_pairs.csv'
 FILES_WITHOUT_LINKS = 'files_without_links.csv'
 
@@ -34,7 +34,7 @@ def collect_arcgis_info_for_coordinate_pair(xy_pair, constants):
     current_county = georeference_links.check_county_using_geocoordinates([longitude, latitude])
     return geocoordinates, current_county
 
-# Use image, index and link metadata to create full records for each image file
+# Use image, index, and link metadata to create full records for each image file
 def create_full_record(base_record, image_record, location_input, match_mode='identifier'):
     full_image_record = copy.deepcopy(base_record)
     full_image_record['File Name'] = image_record['Created Image File Name']
@@ -89,6 +89,7 @@ def create_base_record(batch_metadata):
     source_relative_path = batch_metadata['Index Records'][0]['Source Relative Path']
     year = source_relative_path.split('\\')[-2]
     index_county = source_relative_path.split('\\')[-3]
+    index_county = index_county[0].upper() + index_county[1:]
     base_record = {
         'Descriptive': {
             'Year': year,
@@ -102,7 +103,7 @@ def create_base_record(batch_metadata):
     return base_record
 
 # Uses full records to create a GeoJSON file for output
-# Argument: list of record dictionaries. Returns geojson-formatted dictionary describing a GIS point feature for each image.
+# Argument: list of record dictionaries. Returns: geojson-formatted dictionary describing a GIS point feature for each image.
 def crosswalk_to_geojson(records):
     geojson_dicts = []
     for record in records:
@@ -184,7 +185,6 @@ def match_and_combine_records(batch_metadata, georeferenced_link_data, manual_pa
                     print('-- More than one link record found for file identifier: {} --'.format(file_identifier))
                     for matching_link_record in matching_link_records:
                         print('     -- PDF Object ID Number: {} --'.format(matching_link_record['PDF Object ID Number']))
-        # print(full_image_record) #for testing
     # Checking if any link records were not matched
     link_record_object_ids = []
     for link_record in link_records:
@@ -237,14 +237,15 @@ if __name__=="__main__":
     # Setting output directory for new files (output directory must have a pypdf subdirectory)
     try:
         output_directory_path = sys.argv[3]
+        # to handle output directories with or without trailing slash
         if output_directory_path[-1] != "/":
-            output_directory_path = output_directory_path + "/" #to handle output directories with or without trailing slash
+            output_directory_path = output_directory_path + "/"
     except:
         # proof of concept directory
         output_directory_path = 'output/'
 
     # Create subdirectory of output directory named "pypdf2" if it does not already exist
-    misc_functions.output_subdirectory(output_directory_path, "pypdf2")
+    misc_functions.set_up_output_subdirectory(output_directory_path, "pypdf2")
 
     # Creating or loading image records and georeferenced link records
     county_year_combo = '_'.join(batch_directory_path.split('/')[-2:])

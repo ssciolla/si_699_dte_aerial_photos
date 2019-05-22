@@ -39,7 +39,6 @@ except:
 # When reverse == False, input_data should be a single-line address (string) that is used to query a set of coordinates.
 # When reverse == True, input_data should be a longitude latitude pair (tuple or list) that is used to look up a street address (used here to find county name).
 def fetch_geocoding_data_with_caching(input_data, reverse=False):
-    print(input_data)
     global HIT_API_YET
     if reverse == True:
         input_string = str(input_data[0]) + ', ' + str(input_data[1]) #convert lat-lon pair into string for ArcGIS API
@@ -89,31 +88,31 @@ def create_new_link_records(batch_metadata):
         link_location_dicts.append(link_location_dict)
     return link_location_dicts
 
-def pull_lat_and_lon(geocoding_dict):
+def pull_lon_and_lat(geocoding_dict):
     longitude = geocoding_dict['location']['x']
     latitude = geocoding_dict['location']['y']
     return longitude, latitude
 
-# Function to calculate coefficient and constant for coordinate conversion formula.
+# Function to calculate coefficients and constants for coordinate conversion formulas.
 # Takes as input dictionary with two street intersection information pairs (street address, PDF coordinates) pulled from address pair CSV file
 def find_constants_for_formulas(address_pair_dict):
-    # for each address, reverse geocode address to find real-world coordinaes
+    # For each address, geocode address to find real-world coordinates
     address_one = address_pair_dict['Address 1']
-    address_one_lon, address_one_lat = pull_lat_and_lon(fetch_geocoding_data_with_caching(address_one)[0])
+    address_one_lon, address_one_lat = pull_lon_and_lat(fetch_geocoding_data_with_caching(address_one)[0])
     address_one_x = float(address_pair_dict['Address 1 GIMP X Coordinate'])
     address_one_y = float(address_pair_dict['Address 1 GIMP Y Coordinate'])
 
-    # repeat reverse geocoding to find real-world coordinates of second address
+    # Repeat geocoding to find real-world coordinates of second address
     address_two = address_pair_dict['Address 2']
-    address_two_lon, address_two_lat = pull_lat_and_lon(fetch_geocoding_data_with_caching(address_two)[0])
+    address_two_lon, address_two_lat = pull_lon_and_lat(fetch_geocoding_data_with_caching(address_two)[0])
     address_two_x = float(address_pair_dict['Address 2 GIMP X Coordinate'])
     address_two_y = float(address_pair_dict['Address 2 GIMP Y Coordinate'])
 
-    # use PDF coordinates and real-world coordinates to solve system of equations to find conversion formula for each dimension
+    # Use PDF coordinates and real-world coordinates to solve system of equations to find conversion formula for each dimension
     x_slope = (address_one_lon - address_two_lon) / (address_one_x - address_two_x)
     x_intercept = address_one_lon - (x_slope * address_one_x)
 
-    # repeat equaltion solving for y dimension
+    # Repeat equation solving for y dimension
     y_slope = (address_one_lat - address_two_lat) / (address_one_y - address_two_y)
     y_intercept = address_one_lat - (y_slope * address_one_y)
 
