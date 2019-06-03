@@ -14,7 +14,7 @@ The Python scripts contained with this repository are designed to solve both of 
 
 ### process_batch.py
 
-This script is designed to process the contents of a target directory in the DTE Aerial Photo Collection, where there will be one index PDF and some number of image PDFs, linked to in the index PDF. The script imports the `extract_using_pypdf.py` and `georeference_links.py` scripts described below and executes their workflow functions, ultimately creating new JPEG files for all image PDFs and various metadata files in JSON. One of the JSON files contains comprehensive records for the images &#151; integrating descriptive, locational, and technical metadata. The core of the script is a matching algorithm that seeks to pair image metadata records with link records from the index PDF that have been georeferenced.
+This script is designed to process the contents of a target directory in the DTE Aerial Photo Collection, where there will be one index PDF and some number of image PDFs, linked to in the index PDF. The script imports the `extract_using_pypdf.py` and `georeference_links.py` scripts described below and executes their workflow functions, ultimately creating new JPEG files for all image PDFs and various metadata files in JSON. One of the JSON files contains comprehensive records for the images -- integrating descriptive, locational, and technical metadata. The core of the script is a matching algorithm that seeks to pair image metadata records with link records from the index PDF that have been georeferenced.
 
 #### Use
 
@@ -163,9 +163,9 @@ The script takes these intersections and queries the ArcGIS API to find their ge
 
 To run the script, enter the following command at your command prompt of choice. The script will target the batch metadata file targeted in the Main Program for processing.
 
-`python georeference_links.py [mode]`
+`python georeference_links.py [batch metadata path]`
 
-The value entered for `[mode]` should be a valid relative path from the current working directory to the target batch metadata file with link records to georeference. The script's Main Program runs the georeferencing workflow on a user-defined batch metadata file to generate a sample JSON file. The functions in this script are called by the primary workflow script, `process_batch.py`, to georeference the images extracted by `extract_using_pypdf.py`.
+The value entered for `[batch metadata path]` should be a valid relative path from the current working directory to the target batch metadata file with link records to georeference. The script's Main Program runs the georeferencing workflow on a user-defined batch metadata file to generate a sample JSON file. The functions in this script are called by the primary workflow script, `process_batch.py`, to georeference the images extracted by `extract_using_pypdf.py`.
 
 #### Inputs
 

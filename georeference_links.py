@@ -35,13 +35,14 @@ try:
 except:
     CACHE_DICTION = {}
 
-# Function either geocodes (converts street address to coordinates) or reverse geocodes (converts coordinates to street address).
+# Geocode (converts street address to coordinates) or reverse geocodes (converts coordinates to street address).
 # When reverse == False, input_data should be a single-line address (string) that is used to query a set of coordinates.
 # When reverse == True, input_data should be a longitude latitude pair (tuple or list) that is used to look up a street address (used here to find county name).
 def fetch_geocoding_data_with_caching(input_data, reverse=False):
     global HIT_API_YET
     if reverse == True:
-        input_string = str(input_data[0]) + ', ' + str(input_data[1]) #convert lat-lon pair into string for ArcGIS API
+        # Convert longitude latitude pair into a string to serve as a key in the cache dictionary
+        input_string = str(input_data[0]) + ', ' + str(input_data[1])
     else:
         input_string = input_data
     if input_string in CACHE_DICTION:
@@ -53,9 +54,9 @@ def fetch_geocoding_data_with_caching(input_data, reverse=False):
             gis = GIS()
             HIT_API_YET = True
         if reverse == False:
-            data = geocode(input_string) #geocode() argument is a string
+            data = geocode(input_string) # geocode() argument is a string
         else:
-            data = reverse_geocode(input_data) #reverse_geocode() argument is a list
+            data = reverse_geocode(input_data) # reverse_geocode() argument is a list
         CACHE_DICTION[input_string] = data
         cache_file_open = open(ARCGIS_CACHE_FILE_NAME, "w")
         cache_file_open.write(json.dumps(CACHE_DICTION, indent=4))
@@ -74,7 +75,7 @@ def find_mid_left_point(link_coords):
     y_value = (y_two - y_one)/2 + y_one
     return (x_value, y_value)
 
-# Extract photo PDF metadata (photo identifier, PDF object number, PDF x and y coordinates) from batch_metadata, store in list of intermediary dictionaries
+# Extract link metadata (linked image identifier, PDF Object ID Number, and PDF X and Y coordinates) from batch_metadata, and store in list of dictionaries
 def create_new_link_records(batch_metadata):
     links = batch_metadata['Index Records'][0]['Links']
     link_location_dicts = []
@@ -88,13 +89,14 @@ def create_new_link_records(batch_metadata):
         link_location_dicts.append(link_location_dict)
     return link_location_dicts
 
+# Pulls the longitude and latitude from the geocoding data returned from the ArcGIS API
 def pull_lon_and_lat(geocoding_dict):
     longitude = geocoding_dict['location']['x']
     latitude = geocoding_dict['location']['y']
     return longitude, latitude
 
-# Function to calculate coefficients and constants for coordinate conversion formulas.
-# Takes as input dictionary with two street intersection information pairs (street address, PDF coordinates) pulled from address pair CSV file
+# Calculate coefficients and constants for coordinate conversion formulas
+# Takes as input dictionary with two street intersection information pairs (street address, PDF coordinates) pulled from the address_pairs.csv file
 def find_constants_for_formulas(address_pair_dict):
     # For each address, geocode address to find real-world coordinates
     address_one = address_pair_dict['Address 1']
@@ -116,7 +118,7 @@ def find_constants_for_formulas(address_pair_dict):
     y_slope = (address_one_lat - address_two_lat) / (address_one_y - address_two_y)
     y_intercept = address_one_lat - (y_slope * address_one_y)
 
-    # return equation coefficients and constants to use in converting link PDF coordinates to image real-world coordinates
+    # Return equation coefficients and constants to use in converting link PDF coordinates to real-world coordinates
     return (x_slope, x_intercept, y_slope, y_intercept)
 
 # Implements coordinate conversion formula on a single value, taking target value and formula constants as input
@@ -124,7 +126,7 @@ def convert_between_systems(value, slope, intercept):
     new_value = (slope * value) + intercept
     return new_value
 
-# Reverse geocode input coordinates (pair or list), extract county name from result, and return county name (string).
+# Reverse geocode input coordinates (as a list), extracts county name from result, and return county name (string).
 def check_county_using_geocoordinates(coordinate_pair):
     data = fetch_geocoding_data_with_caching(coordinate_pair, reverse=True)
     county = data['address']['Subregion']
@@ -140,7 +142,7 @@ def georeference_link_records(link_records, address_pair_dict):
         'Y Intercept': constants[3]
     }
 
-    # calculate real-world coordinates, query ArcGIS API for county, return data
+    # Calculate real-world coordinates, query ArcGIS API for county, and return data
     georeferenced_link_records = []
     for link_record in link_records:
         georeferenced_link_record = link_record.copy()
@@ -160,12 +162,12 @@ def run_georeferencing_workflow(batch_metadata_file_path, output_name, output_lo
     batch_metadata = json.loads(batch_metadata_file.read())
     batch_metadata_file.close()
 
-    # Load data from address pairs file
+    # Load data from address_pairs.csv file
     address_pairs = misc_functions.load_csv_data(ADDRESS_PAIRS_FILE_PATH)
 
     index_file_name = batch_metadata['Index Records'][0]['Index File Name']
 
-    # Find data in address_pairs associated with the index file name
+    # Find data in address_pairs.csv associated with the index file name
     pair_index = 0
     for address_pair in address_pairs:
         if address_pair['Index File Name'] == index_file_name:

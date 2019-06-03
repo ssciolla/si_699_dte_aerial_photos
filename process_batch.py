@@ -18,12 +18,11 @@ import misc_functions
 
 # global variables
 MANUAL_PAIRS_FILENAME = 'manual_pairs.csv'
-FILES_WITHOUT_LINKS = 'files_without_links.csv'
+FILES_WITHOUT_LINKS_FILENAME = 'files_without_links.csv'
 
 ## Functions
 
-# Using functions from georeference_links.py, calculate geocoordinates and county for an image file based on
-# the file identifier's coordinates in the index PDF
+# Using functions from georeference_links.py, calculate geocoordinates and county for an image file based on the file identifier's coordinates in the index PDF
 # Arguments: PDF coordinate pair (pair or list) and dictionary of formula coefficients (dictionary). Returns: dictionary with real-world coordinates (dictionary) and name of county (string)
 def collect_arcgis_info_for_coordinate_pair(xy_pair, constants):
     geocoordinates = {}
@@ -53,7 +52,7 @@ def create_full_record(base_record, image_record, location_input, match_mode='id
         full_image_record['Descriptive']['ArcGIS Current County'] = current_county
         full_image_record['Descriptive']['ArcGIS Geocoordinates'] = geocoordinates
     else:
-        print('-- Invalid match mode input--')
+        print('-- Invalid match mode input --')
 
     full_image_record['Technical'] = {
         'Width': image_record['Width'],
@@ -70,12 +69,12 @@ def create_full_record(base_record, image_record, location_input, match_mode='id
         }
     elif match_mode == 'manual':
         match_details = {
-            'Matching Method': 'Image file identifier and PDF Object ID number pair from manual_pairs.csv',
+            'Matching Method': 'Image file identifier and PDF Object ID number pair, from manual_pairs.csv',
             'Link PDF Object ID Number': georeferenced_link_record['PDF Object ID Number']
         }
     elif match_mode == 'visual':
         match_details = {
-            'Matching Method': 'Visually collected PDF coordinates for missing link',
+            'Matching Method': 'Visually collected PDF coordinates for missing link, from files_without_links.csv',
             'Link PDF Object ID Number': None
         }
 
@@ -84,6 +83,7 @@ def create_full_record(base_record, image_record, location_input, match_mode='id
     full_image_record['Preservation']['Date and Time Created'] = misc_functions.make_timestamp()
     return full_image_record
 
+# Create a base record with metadata common to all images associated with an index file
 def create_base_record(batch_metadata):
     index_file_name = batch_metadata['Index Records'][0]['Index File Name']
     source_relative_path = batch_metadata['Index Records'][0]['Source Relative Path']
@@ -102,8 +102,8 @@ def create_base_record(batch_metadata):
     }
     return base_record
 
-# Uses full records to create a GeoJSON file for output
-# Argument: list of record dictionaries. Returns: geojson-formatted dictionary describing a GIS point feature for each image.
+# Use full records to create a GeoJSON file for output
+# Argument: list of record dictionaries. Returns: GeoJSON-formatted dictionary describing a GIS point feature for each image.
 def crosswalk_to_geojson(records):
     geojson_dicts = []
     for record in records:
@@ -136,10 +136,10 @@ def find_link_record_with_id(id_num, link_records):
 def match_and_combine_records(batch_metadata, georeferenced_link_data, manual_pairs, files_without_links):
     print('\n** Image and Link Matching **')
 
-    # pull image records out of batch_metadata
+    # Pull image records out of batch_metadata
     image_records = batch_metadata['Image Records']
 
-    # create base descriptive metadata dictionary for values shared by all image files
+    # Create base descriptive metadata dictionary for values shared by all image files
     base_record = create_base_record(batch_metadata)
 
     link_records = georeferenced_link_data['Georeferenced Link Records']
@@ -164,7 +164,7 @@ def match_and_combine_records(batch_metadata, georeferenced_link_data, manual_pa
             full_image_record = create_full_record(base_record, image_record, arcgis_location_dict, 'visual')
             full_image_records.append(full_image_record)
         else:
-            # Otherwise find all links pointing to the same file as the image
+            # Otherwise find all links pointing to the same image file
             matching_link_records = []
             for link_record in link_records:
                 if link_record['Linked Image PDF Identifier'] == file_identifier:
@@ -253,17 +253,15 @@ if __name__=="__main__":
 
     index_file_name = batch_metadata['Index Records'][0]['Index File Name']
 
-    # Setting up manual pairs dictionary, with image identifiers as values and PDF object ID numbers as
-    # their associated keys
+    # Setting up manual pairs dictionary, with image identifiers as keys and PDF Object ID numbers as their associated values
     manual_pairs_csv_data = misc_functions.load_csv_data('input/' + MANUAL_PAIRS_FILENAME)
     manual_pairs = {}
     for manual_pair_dict in manual_pairs_csv_data:
         if manual_pair_dict['Index File Name'] == index_file_name:
             manual_pairs[manual_pair_dict['Image Identifier']] = manual_pair_dict['PDF Object ID Number']
 
-    # Setting up files without links dictionary, with image identifiers as values and x and y coordinate
-    # tuples as values
-    files_without_links_csv_data = misc_functions.load_csv_data('input/files_without_links.csv')
+    # Setting up files without links dictionary, with image identifiers as keys and x and y coordinate tuples as values
+    files_without_links_csv_data = misc_functions.load_csv_data('input/' + FILES_WITHOUT_LINKS_FILENAME)
     files_without_links = {}
     for file_without_link_dict in files_without_links_csv_data:
         if file_without_link_dict['Index File Name'] == index_file_name:
