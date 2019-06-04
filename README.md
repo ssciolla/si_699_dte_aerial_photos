@@ -1,15 +1,17 @@
 # SI 699 - DTE Aerial Photo Collection Digital Curation Project
 # Batch Processing Workflow Proof of Concept
 
+
 ## Table of Contents
 
-* 1 [Purpose of Scripts](#purposeOfScripts)
-* 2 [Script Descriptions](#scriptDescriptions)
+* 1.0 [Purpose of Scripts](#purposeOfScripts)
+* 2.0 [Script Descriptions](#scriptDescriptions)
   * 2.1 [process_batch.py](#processBatch)
   * 2.2 [extract_using_pypdf.py](#extractUsingPyPDF)
   * 2.3 [extract_using_poppler.py](#extractUsingPoppler)
   * 2.4 [georeference_links.py](#georeferenceLinks)
-* 3 [Script Use and Access](#scriptUseAndAccess)
+* 3.0 [Script Use and Access](#scriptUseAndAccess)
+
 
 ## <a name='purposeOfScripts'></a>Purpose of Scripts
 
