@@ -10,14 +10,14 @@ import sys
 import time
 import csv
 
-def set_path_delimiter():
-    os_name = os.name
-    if os_name == 'posix':
-        return '/'
-    elif os_name == 'nt':
-        return '\\'
-    else:
-        print("?? Unknown OS in use ??")
+# global variables
+os_name = os.name
+if os_name == 'posix':
+    PATH_DELIMITER = '/'
+elif os_name == 'nt':
+    PATH_DELIMITER = '\\'
+else:
+    print("?? Unknown OS in use ??")
 
 # Use time module to create a timestamp to indicate when a record was created
 def make_timestamp():
@@ -40,7 +40,7 @@ def collect_relative_paths_for_files(target_directory_path):
 	for dir_object in dir_objects:
 		if '.pdf' in dir_object.name:
 			absolute_path = os.path.abspath(dir_object.name)
-			relative_path = absolute_path.replace(root_directory + '\\', '').replace(root_directory + '/', '')
+			relative_path = absolute_path.replace(root_directory + PATH_DELIMITER, '')
 			pdf_file_paths.append(relative_path)
 		else:
 			("** Non-PDF file present! **")

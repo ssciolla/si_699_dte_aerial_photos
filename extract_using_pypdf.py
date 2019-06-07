@@ -24,7 +24,7 @@ import PyPDF2
 import misc_functions
 
 # global variables
-PATH_DELIMITER = misc_functions.set_path_delimiter()
+PATH_DELIMITER = misc_functions.PATH_DELIMITER
 
 ## Functions
 
