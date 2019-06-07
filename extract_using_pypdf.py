@@ -23,11 +23,14 @@ import PyPDF2
 # local modules
 import misc_functions
 
+# global variables
+PATH_DELIMITER = misc_functions.set_path_delimiter()
+
 ## Functions
 
 # Identify embedded links in Index PDF and collect metadata
 def pull_links_from_index(relative_path):
-	index_pdf_file_name = relative_path.split('\\')[-1]
+	index_pdf_file_name = relative_path.split(PATH_DELIMITER)[-1]
 	print('// Index: {} //'.format(index_pdf_file_name))
 	index_pdf_file_object = PyPDF2.PdfFileReader(relative_path)
 
@@ -73,7 +76,7 @@ def pull_links_from_index(relative_path):
 	links = sorted(links, key=lambda x: x['Linked Image File Name'])
 	print('** Number of links identified: {} **'.format(str(len(links))))
 
-	index_file_name = index_pdf_file_name.split('\\')[-1]
+	index_file_name = index_pdf_file_name.split(PATH_DELIMITER)[-1]
 	index_file_metadata = {
 		'Index File Name': index_file_name,
 		'Source Relative Path': relative_path,
@@ -84,7 +87,7 @@ def pull_links_from_index(relative_path):
 
 # Identify JPEG bytestream in Image PDF, write it to a new file, and collect image-level metadata
 def extract_jpg_from_pdf(relative_path, output_location=''):
-	image_pdf_file_name = relative_path.split('\\')[-1]
+	image_pdf_file_name = relative_path.split(PATH_DELIMITER)[-1]
 	print('// Image: {} //'.format(image_pdf_file_name))
 	image_pdf_file_object = PyPDF2.PdfFileReader(relative_path)
 

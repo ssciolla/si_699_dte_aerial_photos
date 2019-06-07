@@ -1,4 +1,3 @@
-dte_aerial_macomb_1961_image_records.json
-macomb_1961_georeferenced_links.json
-macomb_1961_image_locations.geojson
-macomb61Index_link_coordinates.csv
+*_image_records.json
+*_georeferenced_links.json
+*_image_locations.geojson

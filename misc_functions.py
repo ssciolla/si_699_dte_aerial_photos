@@ -10,6 +10,15 @@ import sys
 import time
 import csv
 
+def set_path_delimiter():
+    os_name = os.name
+    if os_name == 'posix':
+        return '/'
+    elif os_name == 'nt':
+        return '\\'
+    else:
+        print("?? Unknown OS in use ??")
+
 # Use time module to create a timestamp to indicate when a record was created
 def make_timestamp():
     current_time = time.localtime()
