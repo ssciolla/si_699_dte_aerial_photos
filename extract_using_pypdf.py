@@ -51,28 +51,29 @@ def pull_links_from_index(relative_path):
 			link_coords.append(link_coord)
 		if '/A' in annot_object.keys():
 			indirect_object = annot_object['/A'].getObject()
+			if '/F' in indirect_object.keys():
+				file_name = indirect_object['/F']['/F']
+				link_dictionary = {
+					'PDF Object ID Number': object_number,
+					'Linked Image File Name': file_name,
+					'Link Coordinates': link_coords,
+					'File or URI?': 'File'}
+			else:
+				# Link objects without an '/F' key may signal broken links.
+				print("?? indirectObject does not have a '/F' key ??")
+				print(indirect_object)
+				uri_name = indirect_object['/URI']
+				link_dictionary = {
+					'PDF Object ID Number': object_number,
+					'Linked Image File Name': uri_name,
+					'Link Coordinates': link_coords,
+					'File or URI': 'URI'
+				}
+			links.append(link_dictionary)
 		else:
 			print("?? Annotation does not have a '/A' key ??")
 			print(annot_object['/AP']['/N'].getObject()['/Subtype'])
-		if '/F' in indirect_object.keys():
-			file_name = indirect_object['/F']['/F']
-			link_dictionary = {
-				'PDF Object ID Number': object_number,
-				'Linked Image File Name': file_name,
-				'Link Coordinates': link_coords,
-				'File or URI?': 'File'}
-		else:
-			# Link objects without an '/F' key may signal broken links.
-			print("?? indirectObject does not have a '/F' key ??")
-			print(indirect_object)
-			uri_name = indirect_object['/URI']
-			link_dictionary = {
-				'PDF Object ID Number': object_number,
-				'Linked Image File Name': uri_name,
-				'Link Coordinates': link_coords,
-				'File or URI': 'URI'
-			}
-		links.append(link_dictionary)
+			#print(object_number) #for error testing
 	links = sorted(links, key=lambda x: x['Linked Image File Name'])
 	print('** Number of links identified: {} **'.format(str(len(links))))
 
@@ -139,7 +140,7 @@ def run_pypdf2_workflow(pdf_file_paths, output_location, output_name):
 	pypdf2_batch_metadata = {}
 	pypdf2_batch_metadata['Index Records'] = index_metadata_dicts
 	pypdf2_batch_metadata['Image Records'] = image_metadata_dicts
-	pypdf2_metadata_file = open('output/pypdf2/' + output_name, 'w', encoding='utf-8')
+	pypdf2_metadata_file = open(output_location + output_name, 'w', encoding='utf-8')
 	pypdf2_metadata_file.write(json.dumps(pypdf2_batch_metadata, indent=4))
 	pypdf2_metadata_file.close()
 	pypdf_end = time.time()
