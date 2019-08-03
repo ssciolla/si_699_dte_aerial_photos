@@ -3,3 +3,4 @@ venv/
 ubuntu_venv/
 *.pyc
 .idea
+*.json

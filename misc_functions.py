@@ -84,3 +84,9 @@ def load_csv_data(csv_file_name):
         print('-- CSV file was not found at that path --')
         csv_data = {}
     return csv_data
+
+def normalize_dir_path(dir_path):
+    if dir_path[-1] != '/':
+        return dir_path + '/'
+    else:
+        return dir_path
