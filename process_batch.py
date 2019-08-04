@@ -239,8 +239,7 @@ if __name__=="__main__":
     try:
         output_directory_path = sys.argv[3]
         # to handle output directories with or without trailing slash
-        if output_directory_path[-1] != "/":
-            output_directory_path = output_directory_path + "/"
+        output_directory_path = misc_functions.normalize_dir_path(output_directory_path)
     except:
         # proof of concept directory
         output_directory_path = 'output/'
@@ -249,7 +248,7 @@ if __name__=="__main__":
     misc_functions.set_up_output_subdirectory(output_directory_path, "pypdf2")
 
     # Creating or loading image records and georeferenced link records
-    county_year_combo = '_'.join(batch_directory_path.split('/')[-2:])
+    county_year_combo = '_'.join(misc_functions.normalize_dir_path(batch_directory_path).split('/')[-3:-1])
     batch_metadata, georeferenced_link_data = process_or_load(data_gathering_mode, batch_directory_path, output_directory_path, county_year_combo)
 
     index_file_name = batch_metadata['Index Records'][0]['Index File Name']
